@@ -4,7 +4,7 @@ import fs from 'fs'
 
 // test('should ', () => {
 
-fs.readFile('input.txt', 'utf8', function (err, data) {
+fs.readFile('test.txt', 'utf8', function (err, data) {
   if (err) throw err;
   console.log('OK: ');
   console.log(data)

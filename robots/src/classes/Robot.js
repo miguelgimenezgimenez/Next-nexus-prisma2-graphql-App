@@ -25,19 +25,29 @@ class Robot {
     return new Robot(id, position, orientationVector, commands)
   }
 
+  recognisePosition(position) {
+
+  }
+
   explore(surface) {
     const nextPos = this.position.moveForward(this.orientation)
     const outOfBounds = nextPos.x > surface.width || nextPos.y > surface.height
     let surfaceInfo = surface.getInfo(this.position)
+
     if (surfaceInfo !== SCENT && outOfBounds) {
       surface.scent(this.position)
       this.status = LOST
       return LOST
-    } else {
-      this.surfaceExplored.push(surface.getInfo(nextPos))
-      surface.markMapArea(this.id)
-      this.position = nextPos
     }
+    if (surfaceInfo === SCENT && outOfBounds) {
+      return
+    }
+    if (surfaceInfo === "X") {
+      this.surfaceExplored.push(surface.getInfo(nextPos))
+      surface.markMapArea(nextPos, this.id)
+    }
+    this.position = nextPos
+
   }
 
 
@@ -46,12 +56,13 @@ class Robot {
   }
 
   executeCommands(surface) {
-
+    this.surfaceExplored.push(surface.getInfo(this.position))
+    surface.markMapArea(this.position, this.id)
     for (let index = 0; index < this.commands.length; index++) {
       const command = this.commands[index];
       switch (command) {
         case FORWARD:
-          this.explore(surface)       
+          this.explore(surface)
           break;
         case LEFT:
           this.orientation = this.orientation.turnLeft()
@@ -62,7 +73,7 @@ class Robot {
         default:
           this.sendMessage(`Command ${command} not recognised`)
       }
-      if (this.status===LOST) {
+      if (this.status === LOST) {
         return
       }
     }

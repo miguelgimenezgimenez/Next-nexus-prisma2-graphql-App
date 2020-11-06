@@ -29,7 +29,7 @@ class Mars {
     return discoveredItem
   }
   markMapArea(position, value) {
-    this.map[position.x, position.y] = value
+    this.map[position.x][position.y] = value
   }
   scent(position) {
     this.markMapArea(position, SCENT)
