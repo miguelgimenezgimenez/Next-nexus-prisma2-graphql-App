@@ -1,0 +1,22 @@
+{
+  "name": "robots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "eslint": "^7.12.1"
+  },
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}

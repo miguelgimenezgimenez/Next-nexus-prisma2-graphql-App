@@ -1,0 +1,4 @@
+Mars
+5 3
+Robot id3 0 3 W
+LLFFFLFLFL
