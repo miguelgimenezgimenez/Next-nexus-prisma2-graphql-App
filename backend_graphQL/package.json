@@ -12,7 +12,7 @@
     "semver": "7.3.2"
   },
   "scripts": {
-    "dev": "nodemon src",
+    "dev": "nodemon --ext js,graphql src",
     "start": "node src"
   },
   "devDependencies": {

@@ -9,6 +9,7 @@
     "deploy": "prisma deploy --env-file variables.env"
   },
   "dependencies": {
+    "@prisma/client": "^2.10.2",
     "babel-preset-env": "^1.7.0",
     "bcryptjs": "2.4.3",
     "cookie-parser": "^1.4.3",
@@ -31,5 +32,8 @@
     "presets": [
       "env"
     ]
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.10.2"
   }
 }

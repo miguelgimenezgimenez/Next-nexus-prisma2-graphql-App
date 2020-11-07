@@ -1,0 +1,5 @@
+CREATE TABLE [IF NOT EXISTS] devices (
+  id serial PRIMARY KEY,
+  name VARCHAR (50) NOT NULL,
+  OS VARCHAR (50) NOT NULL,
+);
