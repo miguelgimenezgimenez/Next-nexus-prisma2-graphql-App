@@ -1,12 +1,13 @@
 version: '3'
 services:
   db:
-    image: postgres
+    build: './database'
     restart: always
     environment:
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: docker
+    container_name: postgres-container
     ports:
       - '5432:5432'
     expose:
