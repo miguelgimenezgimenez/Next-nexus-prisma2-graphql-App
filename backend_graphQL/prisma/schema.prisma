@@ -7,13 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model device {
+model Brand {
+  id     Int      @id
+  name   String?
+  Device Device[]
+}
+
+model Device {
   id         Int     @id @default(autoincrement())
-  brand      String
   link       String?
   image      String?
   name       String
   dimensions String?
   os         String?
   storage    String?
+  brand_id   Int
+  Brand      Brand   @relation(fields: [brand_id], references: [id])
 }

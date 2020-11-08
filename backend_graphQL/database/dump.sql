@@ -1,14 +1,32 @@
-create table  Device(
-   id  SERIAL PRIMARY KEY,
-   brand  VARCHAR(100)    NOT NULL,
-   link  VARCHAR(100),
-   image  VARCHAR(100),
-   name      VARCHAR(100)    NOT NULL,
-   dimensions  VARCHAR(100),
-   os        VARCHAR(100),
-   storage        VARCHAR(100)
+CREATE TABLE IF NOT EXISTS "public"."Brand" (
+  id INTEGER PRIMARY KEY NOT NULL,
+  name VARCHAR(255)
+
 );
 
+CREATE TABLE IF NOT EXISTS "public"."Device" (
+   id SERIAL PRIMARY KEY NOT NULL,
+   link VARCHAR(255),
+   image VARCHAR(255),
+   name VARCHAR(255) NOT NULL,
+   dimensions VARCHAR(255),
+   os VARCHAR(255),
+   storage VARCHAR(255),
+   "brand_id" INTEGER NOT NULL,
+   FOREIGN KEY ("brand_id") REFERENCES "public"."Brand"(id)
+);
 
-copy Device (brand,link,image,name,dimensions,os,storage
-) from '/fixtures/all_brands_export.csv'  DELIMITER ';' CSV HEADER; 
+copy "public"."Brand" (id, name)
+from '/fixtures/brands.csv' DELIMITER ';' CSV HEADER;
+
+
+copy "public"."Device" (
+   brand_id,
+   link,
+   image,
+   name,
+   dimensions,
+   os,
+   storage
+)
+from '/fixtures/devices.csv' DELIMITER ';' CSV HEADER;

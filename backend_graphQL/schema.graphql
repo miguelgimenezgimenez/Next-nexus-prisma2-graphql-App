@@ -15,9 +15,10 @@ type Device {
 
 type Mutation {
   addDevice(brand: String!, dimensions: String, image: String, link: String, name: String!, os: String, storage: String): Device!
-  edit(draftId: Int!): Device
+  edit(id: Int!): Device
 }
 
 type Query {
-  getDevices: [Device]!
+  getAllDevices: [Device]!
+  getDevice: [Device]
 }

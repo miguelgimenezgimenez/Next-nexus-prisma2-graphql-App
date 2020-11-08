@@ -17,15 +17,28 @@ const Device = objectType({
 const DeviceQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.field('getDevices', {
+    t.field('getAllDevices', {
       nullable: false,
       type: 'Device',
       list: true,
       async resolve(_root, _args, ctx) {
+        console.log(ctx.req)
         const devices = await ctx.prisma.device.findMany()
         return devices
       },
-    })
+    }),
+      t.list.field('getDevice', {
+        type: 'Device',
+        async resolve(_root, args, ctx) {
+          const result = await ctx.prisma.user.findOne({
+            where: {
+              id: args.id,
+            },
+          })
+          return result
+        },
+      })
+
   },
 
 })
@@ -48,17 +61,9 @@ const DeviceMutation = extendType({
       async resolve(_root, args, ctx) {
         const device = await ctx.prisma.device.create({
           data: {
-            name: args.name,
-            brand: args.brand,
-            link: args.link,
-            image: args.image,
-            dimensions: args.dimensions,
-            os: args.os,
-            storage: args.storage,
+            ...args
           },
         })
-        console.log(device)
-       
         ctx.prisma.device.create(device)
         return device
       },
@@ -66,15 +71,15 @@ const DeviceMutation = extendType({
       t.field('edit', {
         type: 'Device',
         args: {
-          draftId: intArg({ required: true }),
+          id: intArg({ required: true }),
         },
-        resolve(_root, args, ctx) {
-          let draftToPublish = ctx.db.posts.find(p => p.id === args.draftId)
-          if (!draftToPublish) {
-            throw new Error('Could not find draft with id ' + args.draftId)
-          }
-          draftToPublish.published = true
-          return draftToPublish
+        async resolve(_root, args, ctx) {
+          const device = await ctx.prisma.device.update({
+            where: { id: args.id },
+            data: { ...args },
+          })
+          // TODO add edit logic EDIT
+          return device
         },
       })
   },
