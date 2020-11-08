@@ -8,7 +8,12 @@ datasource db {
 }
 
 model device {
-  id   Int     @id @default(autoincrement())
-  name String
-  os   String?
+  id         Int     @id @default(autoincrement())
+  brand      String
+  link       String?
+  image      String?
+  name       String
+  dimensions String?
+  os         String?
+  storage    String?
 }
