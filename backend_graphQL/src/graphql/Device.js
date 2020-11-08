@@ -1,4 +1,4 @@
-const { objectType, extendType, stringArg } = require('@nexus/schema')
+const { objectType, extendType, stringArg, intArg } = require('@nexus/schema')
 
 
 
@@ -16,15 +16,19 @@ const Device = objectType({
   definition(t) {
     t.int('id')
     t.string('name')
-    // t.string('releaseDate')
+    t.string('brand')
+    t.string('link')
+    t.string('image')
+    t.string('dimensions')
     t.string('os')
+    t.string('storage')
   },
 })
 
 const DeviceQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.field('drafts', {
+    t.field('getDevices', {
       nullable: false,
       type: 'Device',
       list: true,
@@ -44,18 +48,46 @@ const DeviceMutation = extendType({
       nullable: false,
       args: {
         name: stringArg({ required: true }),
-        os: stringArg({ required: true }),
+        brand: stringArg({ required: true }),
+        link: stringArg({ required: false }),
+        image: stringArg({ required: false }),
+        dimensions: stringArg({ required: false }),
+        os: stringArg({ required: false }),
+        storage: stringArg({ required: false }),
       },
-      
-      resolve(_root, args, ctx) {
-        const device = {
-          name: args.name,
-          os: args.os,
-        }
+
+      async resolve(_root, args, ctx) {
+        const device = await ctx.prisma.device.create({
+          data: {
+            name: args.name,
+            brand: args.brand,
+            link: args.link,
+            image: args.image,
+            dimensions: args.dimensions,
+            os: args.os,
+            storage: args.storage,
+          },
+        })
+        console.log(device)
+       
         ctx.prisma.device.create(device)
         return device
       },
-    })
+    }),
+      t.field('edit', {
+        type: 'Device',
+        args: {
+          draftId: intArg({ required: true }),
+        },
+        resolve(_root, args, ctx) {
+          let draftToPublish = ctx.db.posts.find(p => p.id === args.draftId)
+          if (!draftToPublish) {
+            throw new Error('Could not find draft with id ' + args.draftId)
+          }
+          draftToPublish.published = true
+          return draftToPublish
+        },
+      })
   },
 })
 
