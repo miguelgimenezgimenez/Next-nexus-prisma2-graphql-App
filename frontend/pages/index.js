@@ -1,11 +1,17 @@
-import React from "react"
-import Link from 'next/link'
-class Home extends React.Component {
+import PropTypes from 'prop-types';
 
-  render() {
-    return <div></div>
-  }
+import Devices from '../components/Devices';
 
+function Home({ query }) {
+ 
+  return (
+    <div>
+      <Devices
+        
+      />
+    </div>
+  );
 }
 
-export default Home
+
+export default Home;
