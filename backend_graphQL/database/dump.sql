@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS "public"."Device" (
    os VARCHAR(255),
    storage VARCHAR(255),
    "brand_id" INTEGER NOT NULL,
-   FOREIGN KEY ("brand_id") REFERENCES "public"."Brand"(id)
+   CONSTRAINT BRAND FOREIGN KEY ("brand_id") REFERENCES "public"."Brand"(id) on delete SET NULL
 );
 
 copy "public"."Brand" (id, name)
