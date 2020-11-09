@@ -26,7 +26,12 @@ class Mars {
 
   getInfo(position) {
     const discoveredItem = this.map[position.x][position.y]
-    return discoveredItem
+    return new Promise(res => {
+      setTimeout(() => {
+        console.log('getinfoooo')
+        res(discoveredItem)
+      }, 1000);
+    })
   }
   markMapArea(position, value) {
     this.map[position.x][position.y] = value

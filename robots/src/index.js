@@ -1,15 +1,14 @@
 import Mission from "./classes/Mission.js";
 import fs from 'fs'
 
-
 // test('should ', () => {
 
-fs.readFile('test.txt', 'utf8', function (err, data) {
+fs.readFile('test.txt', 'utf8', async function (err, data) {
   if (err) throw err;
   console.log('OK: ');
-  console.log(data)
+  // console.log(data)
   const mission = Mission.create(data)
-  mission.start()
+  await mission.start()
   console.log(mission.missionArtifacts)
 });
 

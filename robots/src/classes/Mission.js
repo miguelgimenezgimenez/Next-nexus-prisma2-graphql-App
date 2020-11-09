@@ -29,15 +29,17 @@ class Mission {
     return new Mission(planet, missionArtifacts, INITIAL_STATUS)
   }
 
-  start() {
-    this.missionArtifacts.forEach(artifact => {
-      try {
-        artifact.executeCommands(this.planet)
-      } catch (error) {
-        console.log(error)
-        this.status = MISSION_FAILED
-      }
-    })
+  async start() {
+    await this.missionArtifacts[0].executeCommands(this.planet)
+    // this.missionArtifacts.forEach(async artifact => {
+    //   try {
+    //     await artifact.executeCommands(this.planet)
+    //     console.log('next roboot')
+    //   } catch (error) {
+    //     console.log(error)
+    //     this.status = MISSION_FAILED
+    //   }
+    // })
   }
 }
 

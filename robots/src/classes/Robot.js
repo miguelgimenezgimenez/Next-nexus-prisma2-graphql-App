@@ -29,54 +29,68 @@ class Robot {
 
   }
 
-  explore(surface) {
+  async explore(surface) {
     const nextPos = this.position.moveForward(this.orientation)
     const outOfBounds = nextPos.x > surface.width || nextPos.y > surface.height
-    let surfaceInfo = surface.getInfo(this.position)
-
+    console.log('begfor')
+    let surfaceInfo = await surface.getInfo(this.position)
+    console.log('after')
+    console.log('surfaceInfo', surfaceInfo)
     if (surfaceInfo !== SCENT && outOfBounds) {
       surface.scent(this.position)
       this.status = LOST
-      return LOST
+      return Promise.resolve()
     }
     if (surfaceInfo === SCENT && outOfBounds) {
-      return
+      return Promise.resolve()
     }
     if (surfaceInfo === "X") {
       this.surfaceExplored.push(surface.getInfo(nextPos))
       surface.markMapArea(nextPos, this.id)
     }
     this.position = nextPos
-
+    return Promise.resolve()
   }
 
 
   sendMessage(msg) {
-    // TODO SEND RABBIT MQ MESSAGE
+    console.log('sendmessage')
+    // return new Promise(res => res())
   }
-
-  executeCommands(surface) {
-    this.surfaceExplored.push(surface.getInfo(this.position))
-    surface.markMapArea(this.position, this.id)
-    for (let index = 0; index < this.commands.length; index++) {
+  async *asyncGenerator(surface) {
+    let index = 0;
+    while (index < this.commands.length) {
       const command = this.commands[index];
+      console.log(command)
       switch (command) {
         case FORWARD:
-          this.explore(surface)
-          break;
+          await this.explore(surface)
+          yield;
         case LEFT:
           this.orientation = this.orientation.turnLeft()
-          break
+          yield
         case RIGHT:
           this.orientation = this.orientation.turnRight()
-          break
+          yield
         default:
           this.sendMessage(`Command ${command} not recognised`)
       }
+      console.log(this.status)
       if (this.status === LOST) {
         return
       }
+      index++
+      yield command
     }
+  }
+
+  async executeCommands(surface) {
+    this.surfaceExplored.push(surface.getInfo(this.position))
+    surface.markMapArea(this.position, this.id)
+    for await (const item of this.asyncGenerator(surface)) {
+      console.log('next command',item)
+    }
+
   }
 
 
