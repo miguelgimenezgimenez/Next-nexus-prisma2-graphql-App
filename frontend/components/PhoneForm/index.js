@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PhoneForm({ handleChange, loading, inputs}) {
+export default function PhoneForm({ handleChange, loading, inputs }) {
   return (
     <fieldset disabled={loading} aria-busy={loading}>
 
@@ -19,11 +19,11 @@ export default function PhoneForm({ handleChange, loading, inputs}) {
 
       <label htmlFor="brand_id">
         Brand
-      <select name="brand_id" id="brand_id">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+      <select type="number" onChange={handleChange} name="brand_id" id="brand_id">
+          <option value={1}>Volvo</option>
+          <option value={1}>Saab</option>
+          <option value={1}>Mercedes</option>
+          <option value={1}>Audi</option>
         </select>
 
       </label>

@@ -4,10 +4,10 @@ import gql from 'graphql-tag';
 import Router from 'next/router';
 
 import useForm from '../utils/useForm';
-import { Form } from '../Components/styles/common';
-import ErrorMessage from '../Components/ErrorMessage';
-import { ALL_PHONES_QUERY } from '../Components/PhonesList';
-import { PAGINATION_QUERY } from '../Components/Pagination';
+import { Form } from '../components/styles/common';
+import ErrorMessage from '../components/ErrorMessage';
+import { ALL_PHONES_QUERY } from '../components/PhonesList';
+import { PAGINATION_QUERY } from '../components/Pagination';
 import PhoneForm from '../components/PhoneForm';
 
 
@@ -64,7 +64,7 @@ function AddPhone() {
         console.log(res);
         // change them to the single item page
         Router.push({
-          pathname: '/phones',
+          pathname: '/phone',
           query: { id: res.data.addPhone.id },
         });
       }}

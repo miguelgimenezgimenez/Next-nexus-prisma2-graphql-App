@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 
 export const Title = styled.h3`
@@ -62,6 +62,7 @@ input[type='submit'] {
   background-color: ${props => props.theme.gsgreen};
   color: white;
   border: 0;
+  float:right;
   font-size: 2rem;
   font-weight: 600;
   padding: 0.5rem 1.2rem;

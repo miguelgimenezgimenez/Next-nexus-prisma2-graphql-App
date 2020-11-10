@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorStyles from './styles';
 
-const DisplayError = ({ error }) => {
+const ErrorMessaje = ({ error }) => {
   if (!error || !error.message) return null;
   if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
     return error.networkError.result.errors.map((error, i) => (
@@ -23,9 +23,5 @@ const DisplayError = ({ error }) => {
   );
 };
 
-DisplayError.defaultProps = {
-  error: {},
-};
 
-
-export default DisplayError;
+export default ErrorMessaje;

@@ -13,6 +13,7 @@ const GET_PHONE_QUERY = gql`
     getPhone(id:$id) {
       id
       name
+      brand_id
       image
       dimensions
       os
