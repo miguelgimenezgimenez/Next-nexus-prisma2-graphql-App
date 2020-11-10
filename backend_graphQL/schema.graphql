@@ -9,7 +9,7 @@ type Brand {
 
 type Mutation {
   addPhone(brand_id: String!, dimensions: String, image: String, name: String!, os: String, storage: String): Phone!
-  edit(id: Int!): Phone
+  editPhone(brand_id: String!, dimensions: String, id: String!, image: String, name: String!, os: String, storage: String): Phone
 }
 
 type Phone {
