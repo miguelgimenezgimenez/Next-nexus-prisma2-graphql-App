@@ -9,7 +9,7 @@ class Robot {
     this.orientation = orientation
     this.commands = commands
     this.status = ALIVE
-    this.surfaceExplored = []
+    this.planetExplored = []
   }
 
   static create(artifactInfo, commands) {
@@ -29,24 +29,22 @@ class Robot {
 
   }
 
-  async explore(surface) {
+  async explore(planet) {
     const nextPos = this.position.moveForward(this.orientation)
-    const outOfBounds = nextPos.x > surface.width || nextPos.y > surface.height
-    console.log('begfor')
-    let surfaceInfo = await surface.getInfo(this.position)
-    console.log('after')
-    console.log('surfaceInfo', surfaceInfo)
-    if (surfaceInfo !== SCENT && outOfBounds) {
-      surface.scent(this.position)
+    const outOfBounds = nextPos.x > planet.width || nextPos.y > planet.height
+    const planetInfo = planet.getInfo(this.position)
+    if (planetInfo !== SCENT && outOfBounds) {
+      await planet.markMapArea(this.position, SCENT)
       this.status = LOST
       return Promise.resolve()
     }
-    if (surfaceInfo === SCENT && outOfBounds) {
+    if (planetInfo === SCENT && outOfBounds) {
       return Promise.resolve()
     }
-    if (surfaceInfo === "X") {
-      this.surfaceExplored.push(surface.getInfo(nextPos))
-      surface.markMapArea(nextPos, this.id)
+    const nextplanetInfo = planet.getInfo(nextPos)
+    if (nextplanetInfo === "X") {
+      this.planetExplored.push(nextplanetInfo)
+      await planet.markMapArea(nextPos, this.id)
     }
     this.position = nextPos
     return Promise.resolve()
@@ -54,43 +52,43 @@ class Robot {
 
 
   sendMessage(msg) {
-    console.log('sendmessage')
+    console.log('sendmessage', msg)
     // return new Promise(res => res())
   }
-  async *asyncGenerator(surface) {
+  async *commandGenerator(planet) {
     let index = 0;
     while (index < this.commands.length) {
       const command = this.commands[index];
-      console.log(command)
       switch (command) {
         case FORWARD:
-          await this.explore(surface)
-          yield;
+          await this.explore(planet)
+          break
         case LEFT:
           this.orientation = this.orientation.turnLeft()
-          yield
+          break
         case RIGHT:
           this.orientation = this.orientation.turnRight()
-          yield
+          break
         default:
           this.sendMessage(`Command ${command} not recognised`)
       }
-      console.log(this.status)
       if (this.status === LOST) {
         return
       }
       index++
-      yield command
+      yield
     }
   }
 
-  async executeCommands(surface) {
-    this.surfaceExplored.push(surface.getInfo(this.position))
-    surface.markMapArea(this.position, this.id)
-    for await (const item of this.asyncGenerator(surface)) {
-      console.log('next command',item)
+  async executeCommands(planet) {
+    const currentInfo = planet.getInfo(this.position)
+    this.planetExplored.push(currentInfo)
+    await planet.markMapArea(this.position, this.id)
+    for await (const item of this.commandGenerator(planet)) {
+      console.log('next command', item)
     }
 
+    return Promise.resolve()
   }
 
 

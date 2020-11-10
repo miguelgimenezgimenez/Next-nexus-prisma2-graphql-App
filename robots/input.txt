@@ -1,8 +1,8 @@
 Mars
 5 3
-Robot id1 1 1 E
-RFRFRFRF
-Robot id2 3 2 N
+Robot 🇧🇸 1 1 E
+RFRFRFRF 
+Robot 🇧🇹 3 2 N
 FRRFLLFFRRFLL
 Robot id3 0 3 W
 LLFFFLFLFL

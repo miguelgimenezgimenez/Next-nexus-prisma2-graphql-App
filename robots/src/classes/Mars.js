@@ -1,5 +1,4 @@
 import { SCENT } from '../constants.js'
-
 class Mars {
   constructor(height, width, map) {
     this.height = height;
@@ -26,19 +25,19 @@ class Mars {
 
   getInfo(position) {
     const discoveredItem = this.map[position.x][position.y]
-    return new Promise(res => {
-      setTimeout(() => {
-        console.log('getinfoooo')
-        res(discoveredItem)
-      }, 1000);
-    })
+    return discoveredItem
   }
   markMapArea(position, value) {
-    this.map[position.x][position.y] = value
+    return new Promise(resolve => {
+      this.map[position.x][position.y] = value
+      setTimeout(() => {
+
+        resolve()
+      }, 1000);
+
+    })
   }
-  scent(position) {
-    this.markMapArea(position, SCENT)
-  }
+
 
 }
 

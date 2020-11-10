@@ -3,7 +3,7 @@ import fs from 'fs'
 
 // test('should ', () => {
 
-fs.readFile('test.txt', 'utf8', async function (err, data) {
+fs.readFile('input.txt', 'utf8', async function (err, data) {
   if (err) throw err;
   console.log('OK: ');
   // console.log(data)

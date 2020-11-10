@@ -29,17 +29,22 @@ class Mission {
     return new Mission(planet, missionArtifacts, INITIAL_STATUS)
   }
 
+  async *missionArtifactGenerator() {
+    let index = 0;
+    while (index < this.missionArtifacts.length) {
+      const artifact = this.missionArtifacts[index]
+      artifact.update(this.planet)
+      const missionResponse = await this.missionArtifacts[index].executeCommands(this.planet)
+      
+      yield missionResponse
+      index++
+    }
+  }
+
   async start() {
-    await this.missionArtifacts[0].executeCommands(this.planet)
-    // this.missionArtifacts.forEach(async artifact => {
-    //   try {
-    //     await artifact.executeCommands(this.planet)
-    //     console.log('next roboot')
-    //   } catch (error) {
-    //     console.log(error)
-    //     this.status = MISSION_FAILED
-    //   }
-    // })
+    for await (const missionResponse of this.missionArtifactGenerator()) {
+      console.log(this.planet);
+    }
   }
 }
 
