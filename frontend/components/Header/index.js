@@ -30,6 +30,7 @@ const Header = () => (
       <Nav />
     </div>
     <div className="sub-bar">
+      <Nav />
 
     </div>
 

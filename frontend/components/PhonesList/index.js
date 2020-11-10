@@ -17,7 +17,7 @@ const ALL_PHONES_QUERY = gql`
   }
 `;
 
-function Phones({ page, count }) {
+function PhonesList({ page, count }) {
   const { data, error, loading } = useQuery(ALL_PHONES_QUERY, {
   });
 
@@ -31,7 +31,7 @@ function Phones({ page, count }) {
         return (
           <ItemsList>
             {data.getAllPhones.map(phone => (
-              <ListItem item={phone} key={phone.id} pathname="/phones" />
+              <ListItem item={phone} key={phone.id} pathname="/phone" />
             ))}
           </ItemsList>
         );
@@ -40,5 +40,5 @@ function Phones({ page, count }) {
   );
 }
 
-export default Phones;
+export default PhonesList;
 export { ALL_PHONES_QUERY }

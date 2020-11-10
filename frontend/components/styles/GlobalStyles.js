@@ -17,7 +17,6 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
-    height:100%;
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
@@ -28,9 +27,7 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     color: ${theme.black};
   }
-  #__next{
-    height:100%;
-  }
+
   button {  font-family: 'scout'; }
 `;
 export default GlobalStyles

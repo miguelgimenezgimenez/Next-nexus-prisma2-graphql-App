@@ -1,10 +1,10 @@
-import Phones from '../components/Phones';
+import PhonesList from '../components/PhonesList';
 
 function Home({ query }) {
 
   return (
     <div>
-      <Phones/>
+      <PhonesList/>
     </div>
   );
 }
