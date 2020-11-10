@@ -2,8 +2,18 @@
 ### Do not make changes to this file directly
 
 
-type Device {
-  brand: String
+type Brand {
+  id: Int
+  name: String
+}
+
+type Mutation {
+  addPhone(brand: String!, dimensions: String, image: String, link: String, name: String!, os: String, storage: String): Phone!
+  edit(id: Int!): Phone
+}
+
+type Phone {
+  brand_id: Int
   dimensions: String
   id: Int
   image: String
@@ -13,12 +23,9 @@ type Device {
   storage: String
 }
 
-type Mutation {
-  addDevice(brand: String!, dimensions: String, image: String, link: String, name: String!, os: String, storage: String): Device!
-  edit(id: Int!): Device
-}
-
 type Query {
-  getAllDevices: [Device]!
-  getDevice: [Device]
+  getAllBrands: [Brand]!
+  getAllPhones: [Phone]!
+  getBrandsPhones(brandId: Int!): [Phone]
+  getPhone(id: Int!): [Phone]
 }

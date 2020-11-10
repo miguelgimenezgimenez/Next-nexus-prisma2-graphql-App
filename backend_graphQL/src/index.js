@@ -3,7 +3,8 @@ const graphQLServer = require('./graphQLserver')
 
 graphQLServer.start({
   cors: {
-    origin: process.env.FRONTEND_URL
+    origin: process.env.FRONTEND_URL,
+    credentials:true
   }
 }, () =>
   console.log(

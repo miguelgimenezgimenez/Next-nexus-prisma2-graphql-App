@@ -1,11 +1,11 @@
 const { objectType, extendType, stringArg, intArg } = require('@nexus/schema')
 
-const Device = objectType({
-  name: 'Device',
+const Phone = objectType({
+  name: 'Phone',
   definition(t) {
     t.int('id')
     t.string('name')
-    t.string('brand')
+    t.int('brand_id')
     t.string('link')
     t.string('image')
     t.string('dimensions')
@@ -14,23 +14,37 @@ const Device = objectType({
   },
 })
 
-const DeviceQuery = extendType({
+const PhoneQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.field('getAllDevices', {
+    t.field('getAllPhones', {
       nullable: false,
-      type: 'Device',
+      type: 'Phone',
       list: true,
       async resolve(_root, _args, ctx) {
-        console.log(ctx.req)
-        const devices = await ctx.prisma.device.findMany()
-        return devices
+        const phones = await ctx.prisma.phone.findMany()
+        return phones
       },
     }),
-      t.list.field('getDevice', {
-        type: 'Device',
+      t.list.field('getBrandsPhones', {
+        type: 'Phone',
+        args: {
+          brandId: intArg({ required: true }),
+        },
         async resolve(_root, args, ctx) {
-          const result = await ctx.prisma.user.findOne({
+          const brandsPhones = await ctx.prisma.phone
+            .findMany({ where: { id: args.brandId } })
+
+          return brandsPhones
+        },
+      }),
+      t.list.field('getPhone', {
+        type: 'Phone',
+        args: {
+          id: intArg({ required: true }),
+        },
+        async resolve(_root, args, ctx) {
+          const result = await ctx.prisma.phone.findOne({
             where: {
               id: args.id,
             },
@@ -42,11 +56,11 @@ const DeviceQuery = extendType({
   },
 
 })
-const DeviceMutation = extendType({
+const PhoneMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.field('addDevice', {
-      type: 'Device',
+    t.field('addPhone', {
+      type: 'Phone',
       nullable: false,
       args: {
         name: stringArg({ required: true }),
@@ -59,31 +73,31 @@ const DeviceMutation = extendType({
       },
 
       async resolve(_root, args, ctx) {
-        const device = await ctx.prisma.device.create({
+        const phone = await ctx.prisma.phone.create({
           data: {
             ...args
           },
         })
-        ctx.prisma.device.create(device)
-        return device
+        ctx.prisma.phone.create(phone)
+        return phone
       },
     }),
       t.field('edit', {
-        type: 'Device',
+        type: 'Phone',
         args: {
           id: intArg({ required: true }),
         },
         async resolve(_root, args, ctx) {
-          const device = await ctx.prisma.device.update({
+          const phone = await ctx.prisma.phone.update({
             where: { id: args.id },
             data: { ...args },
           })
           // TODO add edit logic EDIT
-          return device
+          return phone
         },
       })
   },
 })
 
 
-module.exports = { Device, DeviceQuery, DeviceMutation }
+module.exports = { Phone, PhoneQuery, PhoneMutation }

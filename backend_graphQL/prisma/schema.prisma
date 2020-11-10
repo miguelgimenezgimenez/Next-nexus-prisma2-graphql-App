@@ -8,12 +8,12 @@ datasource db {
 }
 
 model Brand {
-  id     Int      @id
-  name   String?
-  Device Device[]
+  id    Int     @id
+  name  String?
+  Phone Phone[]
 }
 
-model Device {
+model Phone {
   id         Int     @id @default(autoincrement())
   link       String?
   image      String?

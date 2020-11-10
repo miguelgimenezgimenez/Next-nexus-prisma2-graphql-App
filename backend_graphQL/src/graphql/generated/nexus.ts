@@ -33,7 +33,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenRootTypes {
-  Device: { // root type
+  Phone: { // root type
     id?: number | null; // Int
     name?: string | null; // String
     OS?: string | null; // String
@@ -51,7 +51,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
-  Device: { // field return type
+  Phone: { // field return type
     id: number | null; // Int
     name: string | null; // String
     OS: string | null; // String
@@ -63,7 +63,7 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
-  Device: { // field return type name
+  Phone: { // field return type name
     id: 'Int'
     name: 'String'
     OS: 'String'
@@ -82,7 +82,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Device" | "Query";
+export type NexusGenObjectNames = "Phone" | "Query";
 
 export type NexusGenInputNames = never;
 

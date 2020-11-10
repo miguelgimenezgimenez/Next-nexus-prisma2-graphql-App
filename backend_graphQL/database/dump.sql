@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "public"."Brand" (
 
 );
 
-CREATE TABLE IF NOT EXISTS "public"."Device" (
+CREATE TABLE IF NOT EXISTS "public"."Phone" (
    id SERIAL PRIMARY KEY NOT NULL,
    link VARCHAR(255),
    image VARCHAR(255),
@@ -20,7 +20,7 @@ copy "public"."Brand" (id, name)
 from '/fixtures/brands.csv' DELIMITER ';' CSV HEADER;
 
 
-copy "public"."Device" (
+copy "public"."Phone" (
    brand_id,
    link,
    image,
@@ -29,4 +29,4 @@ copy "public"."Device" (
    os,
    storage
 )
-from '/fixtures/devices.csv' DELIMITER ';' CSV HEADER;
+from '/fixtures/phones.csv' DELIMITER ';' CSV HEADER;

@@ -1,7 +1,6 @@
-// const Device = require('./Device')
+// const Phone = require('./Phone')
 
 module.exports = { 
-  ...require('./Device'),
-
-
+  ...require('./Phone'),
+  ...require('./Brand')
 }
