@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Title } from '../styles/GlobalStyles';
+import { Title } from '../styles/common';
 import ListItemStyles from './styles';
 
 export default function ListItem({ item, pathname }) {

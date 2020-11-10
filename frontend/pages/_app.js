@@ -1,7 +1,7 @@
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
-import withData from '../lib/withData';
+import withData from '../utils/withData';
 
 // import { CartStateProvider } from '../components/LocalState';
 

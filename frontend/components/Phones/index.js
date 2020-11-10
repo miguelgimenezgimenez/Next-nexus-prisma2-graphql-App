@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client';
 import { perPage } from '../../config';
 
-import { Center, ItemsList } from '../styles/GlobalStyles';
+import { Center, ItemsList } from '../styles/common';
 import ListItem from '../ListItem';
 
 const ALL_PHONES_QUERY = gql`
@@ -41,4 +41,4 @@ function Phones({ page, count }) {
 }
 
 export default Phones;
-
+export { ALL_PHONES_QUERY }

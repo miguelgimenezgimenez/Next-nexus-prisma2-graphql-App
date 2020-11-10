@@ -3,7 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import Header from '../Header';
 import Meta from '../Meta';
 import { StyledPage, Inner } from './styles';
-import { GlobalStyles, theme } from '../styles/GlobalStyles';
+import GlobalStyles from '../styles/GlobalStyles';
+import theme from '../styles/theme';
 
 
 class Page extends Component {

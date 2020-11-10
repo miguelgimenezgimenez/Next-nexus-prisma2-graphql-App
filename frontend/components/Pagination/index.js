@@ -4,9 +4,9 @@ import { useQuery } from '@apollo/client';
 
 import Head from 'next/head';
 import Link from 'next/link';
-import PaginationStyles from './styles/PaginationStyles';
-import { perPage } from '../config';
-import Error from './ErrorMessage';
+import  PaginationStyles  from './styles';
+import { perPage } from '../../config';
+import ErrorMessage from '../ErrorMessage';
 
 export const PAGINATION_QUERY = gql`
   query PAGINATION_QUERY {
@@ -19,7 +19,7 @@ export const PAGINATION_QUERY = gql`
 function Pagination({ page }) {
   const { error, loading, data } = useQuery(PAGINATION_QUERY);
   if (loading) return <p>Loading...</p>;
-  if (error) return <Error error={error} />;
+  if (error) return <ErrorMessage error={error} />;
   const { count } = data._allItemsMeta;
   const pages = Math.ceil(count / perPage);
   return (
