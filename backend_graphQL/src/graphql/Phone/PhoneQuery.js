@@ -1,12 +1,11 @@
-const {  extendType,  intArg } = require('@nexus/schema')
+const { extendType, intArg, stringArg } = require('@nexus/schema')
 
 const PhoneQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.field('getAllPhones', {
+    t.list.field('getAllPhones', {
       nullable: false,
       type: 'Phone',
-      list: true,
       async resolve(_root, _args, ctx) {
         const phones = await ctx.prisma.phone.findMany()
         return phones
@@ -23,17 +22,20 @@ const PhoneQuery = extendType({
           return brandsPhones
         },
       }),
-      t.list.field('getPhone', {
+      t.field('getPhone', {
         type: 'Phone',
         args: {
-          id: intArg({ required: true }),
+          id: stringArg({ required: true }),
         },
+
         async resolve(_root, args, ctx) {
           const result = await ctx.prisma.phone.findOne({
             where: {
-              id: args.id,
+              id: Number(args.id),
+
             },
           })
+
           return result
         },
       })

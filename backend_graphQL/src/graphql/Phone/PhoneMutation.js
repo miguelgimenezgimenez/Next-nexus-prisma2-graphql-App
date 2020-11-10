@@ -1,5 +1,4 @@
-
-const { extendType, stringArg } = require('@nexus/schema')
+const { extendType, stringArg, intArg } = require('@nexus/schema')
 
 const PhoneMutation = extendType({
   type: 'Mutation',
@@ -9,7 +8,7 @@ const PhoneMutation = extendType({
       nullable: false,
       args: {
         name: stringArg({ required: true }),
-        brand_id: stringArg({ required: true }),
+        brand_id: intArg({ required: true }),
         image: stringArg({ required: false }),
         dimensions: stringArg({ required: false }),
         os: stringArg({ required: false }),
@@ -17,47 +16,64 @@ const PhoneMutation = extendType({
       },
 
       async resolve(_root, args, ctx) {
-        const { name, image, dimensions, os, storage } = args
-        console.log(typeof args.brand_id)
+        const { brand_id } = args
+        delete args.brand_id
         const phone = await ctx.prisma.phone.create({
           data: {
-            name,
-            image,
-            dimensions,
-            os,
-            storage,
+            ...args,
             Brand: {
               connect: {
-                id: Number(args.brand_id)
+                id: brand_id
               }
             }
           },
         })
-        ctx.prisma.phone.create(phone)
         return phone
       },
     }),
-      t.field('editPhone', {
+      t.field('updatePhone', {
         type: 'Phone',
         args: {
-          id: stringArg({ required: true }),
+          id: intArg({ required: true }),
           name: stringArg({ required: true }),
-          brand_id: stringArg({ required: true }),
+          brand_id: intArg({ required: true }),
           image: stringArg({ required: false }),
           dimensions: stringArg({ required: false }),
           os: stringArg({ required: false }),
           storage: stringArg({ required: false }),
-
         },
         async resolve(_root, args, ctx) {
+          const { brand_id, id } = args
+          delete args.brand_id
+          delete args.id
           const phone = await ctx.prisma.phone.update({
-            where: { id: args.id },
-            data: { ...args },
+            where: {
+              id: id
+            },
+            data: {
+              ...args,
+              Brand: {
+                connect: {
+                  id: brand_id
+                }
+              }
+            },
           })
-          // TODO add edit logic EDIT
           return phone
         },
       })
+    t.field('deletePhone', {
+      type: 'Phone',
+      args: {
+        id: stringArg({ required: true }),
+      },
+      async resolve(_root, args, ctx) {
+        const phone = await ctx.prisma.phone.delete({
+          where: { id: args.id }
+        })
+        return phone
+      },
+    })
   },
 })
 

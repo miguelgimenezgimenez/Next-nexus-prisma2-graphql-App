@@ -8,8 +8,9 @@ type Brand {
 }
 
 type Mutation {
-  addPhone(brand_id: String!, dimensions: String, image: String, name: String!, os: String, storage: String): Phone!
-  editPhone(brand_id: String!, dimensions: String, id: String!, image: String, name: String!, os: String, storage: String): Phone
+  addPhone(brand_id: Int!, dimensions: String, image: String, name: String!, os: String, storage: String): Phone!
+  deletePhone(id: String!): Phone
+  updatePhone(brand_id: Int!, dimensions: String, id: Int!, image: String, name: String!, os: String, storage: String): Phone
 }
 
 type Phone {
@@ -27,5 +28,5 @@ type Query {
   getAllBrands: [Brand]!
   getAllPhones: [Phone]!
   getBrandsPhones(brand_id: Int!): [Phone]
-  getPhone(id: Int!): [Phone]
+  getPhone(id: String!): Phone
 }
