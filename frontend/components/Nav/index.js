@@ -5,8 +5,17 @@ import NavStyles from './styles';
 function Nav() {
   return (
     <NavStyles data-testid="nav">
-      <Link href="/devices">
-        <a>Devices</a>
+      <Link href="/phones">
+        <a>Phones</a>
+      </Link>
+      <Link href="/phones">
+        <a>Phones</a>
+      </Link>
+      <Link href="/phones">
+        <a>Phones</a>
+      </Link>
+      <Link href="/phones">
+        <a>Phones</a>
       </Link>
 
     </NavStyles>

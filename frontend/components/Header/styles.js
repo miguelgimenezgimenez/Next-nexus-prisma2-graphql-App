@@ -18,6 +18,7 @@ export const Logo = styled.div`
 `;
 export const StyledHeader = styled.header`
   .bar {
+    background-color:white;
     border-bottom: 10px solid ${props => props.theme.black};
     display: grid;
     grid-template-columns: auto 1fr;

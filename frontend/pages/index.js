@@ -1,14 +1,12 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-import Devices from '../components/Devices';
+import Phones from '../components/Phones';
 
 function Home({ query }) {
- 
+
   return (
     <div>
-      <Devices
-        
-      />
+      <Phones/>
     </div>
   );
 }

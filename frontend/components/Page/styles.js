@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledPage = styled.div`
-  background: white;
+  background-color: ${props => props.theme.backgroundColor};
   color: ${props => props.theme.black};
 `;
 
