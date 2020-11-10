@@ -29,12 +29,11 @@ const PhoneQuery = extendType({
       t.list.field('getBrandsPhones', {
         type: 'Phone',
         args: {
-          brandId: intArg({ required: true }),
+          brand_id: intArg({ required: true }),
         },
         async resolve(_root, args, ctx) {
           const brandsPhones = await ctx.prisma.phone
-            .findMany({ where: { id: args.brandId } })
-
+            .findMany({ where: { brand_id: args.brand_id } })
           return brandsPhones
         },
       }),
@@ -64,8 +63,7 @@ const PhoneMutation = extendType({
       nullable: false,
       args: {
         name: stringArg({ required: true }),
-        brand: stringArg({ required: true }),
-        link: stringArg({ required: false }),
+        brand_id: stringArg({ required: true }),
         image: stringArg({ required: false }),
         dimensions: stringArg({ required: false }),
         os: stringArg({ required: false }),
@@ -73,9 +71,20 @@ const PhoneMutation = extendType({
       },
 
       async resolve(_root, args, ctx) {
+        const { name, image, dimensions, os, storage } = args
+        console.log(typeof args.brand_id)
         const phone = await ctx.prisma.phone.create({
           data: {
-            ...args
+            name,
+            image,
+            dimensions,
+            os,
+            storage,
+            Brand: {
+              connect: {
+                id: Number(args.brand_id)
+              }
+            }
           },
         })
         ctx.prisma.phone.create(phone)
