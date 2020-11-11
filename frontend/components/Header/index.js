@@ -1,5 +1,4 @@
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/client';
+
 import Link from 'next/link';
 import NProgress from 'nprogress';
 import Router from 'next/router';
@@ -29,10 +28,14 @@ const Header = () => {
             </a>
           </Link>
         </Logo>
-
+        <Link href="/add">
+          <a>
+            <button>ADD DEVICE</button>
+          </a>
+        </Link>
       </div>
       <div className="sub-bar">
-        <Nav  />
+        <Nav />
 
       </div>
 

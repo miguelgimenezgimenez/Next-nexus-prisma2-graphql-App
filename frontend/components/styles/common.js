@@ -9,7 +9,7 @@ a {
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
-  
+ 
   display: inline;
   line-height: 1.3;
   font-size: 3rem;
@@ -36,7 +36,7 @@ export const Form = styled.form`
 box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
 background: rgba(0, 0, 0, 0.02);
 border: 5px solid white;
-padding: 20px;
+padding: 20px 20px 40px 20px;
 font-size: 1.5rem;
 line-height: 1.5;
 font-weight: 600;
@@ -58,6 +58,7 @@ select {
 }
 button,
 input[type='submit'] {
+  cursor:pointer;
   width: auto;
   background-color: ${props => props.theme.gsgreen};
   color: white;

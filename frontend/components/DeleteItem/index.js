@@ -1,7 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import { PHONE_CONNECTION_QUERY } from '../PhonesList';
 
 const DELETE_PHONE_MUTATION = gql`
   mutation DELETE_PHONE_MUTATION($id: Int!) {

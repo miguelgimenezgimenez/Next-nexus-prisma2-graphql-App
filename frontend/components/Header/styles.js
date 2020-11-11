@@ -20,12 +20,13 @@ export const StyledHeader = styled.header`
   .bar {
     background-color:white;
     border-bottom: 10px solid ${props => props.theme.black};
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display:flex;
     justify-content: space-between;
     align-items: stretch;
+    padding:0 30px;
+    align-items:center;
     @media (max-width: 1300px) {
-      grid-template-columns: 1fr;
+
       justify-content: center;
     }
   }
@@ -33,5 +34,23 @@ export const StyledHeader = styled.header`
     display: grid;
     grid-template-columns: 1fr auto;
     border-bottom: 1px solid ${props => props.theme.lightgrey};
+  }
+  button  {
+    cursor:pointer;
+    width: auto;
+    background-color: ${props => props.theme.gsgreen};
+    color: white;
+    border: 0;
+    height:5rem;
+    border-radius:1rem;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    @media (max-width: 1300px) {
+      font-size:1rem;
+
+      height:3rem;
+
+}
   }
 `;

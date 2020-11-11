@@ -33,7 +33,7 @@ const ADD_PHONE_MUTATION = gql`
 `;
 
 function update(cache, payload) {
-  console.log(cache, payload)
+
   cache.modify({
     fields: {
       phoneConnection({ nodes }) {
