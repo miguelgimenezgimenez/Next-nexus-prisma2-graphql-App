@@ -59,7 +59,6 @@ type PhoneEdge {
 
 type Query {
   getAllBrands: [Brand]!
-  getBrandsPhones(brand_id: Int!): [Phone]
   getPhone(id: Int!): Phone
   phoneConnection(
     """Returns the elements in the list that come after the specified cursor"""

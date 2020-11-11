@@ -52,35 +52,23 @@ const PhoneQuery = extendType({
         return connectionFromArray(phones, args)
       },
     })
-    t.list.field('getBrandsPhones', {
+    t.field('getPhone', {
       type: 'Phone',
       args: {
-        brand_id: intArg({ required: true }),
+        id: intArg({ required: true }),
       },
+
       async resolve(_root, args, ctx) {
-        const brandsPhones = await ctx.prisma.phone
-          .findMany({ where: { brand_id: args.brand_id } })
-        return brandsPhones
+        const result = await ctx.prisma.phone.findOne({
+          where: {
+            id: args.id,
+
+          },
+        })
+
+        return result
       },
-    }),
-      t.field('getPhone', {
-        type: 'Phone',
-        args: {
-          id: intArg({ required: true }),
-        },
-
-        async resolve(_root, args, ctx) {
-          const result = await ctx.prisma.phone.findOne({
-            where: {
-              id: args.id,
-
-            },
-          })
-
-          return result
-        },
-      })
-
+    })
   },
 
 })
