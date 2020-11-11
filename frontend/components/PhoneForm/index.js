@@ -1,6 +1,8 @@
 import React from 'react'
+import { useLocalState } from '../../LocalState'
 
 export default function PhoneForm({ handleChange, loading, inputs }) {
+  const { brands } = useLocalState()
   return (
     <fieldset disabled={loading} aria-busy={loading}>
 
@@ -19,11 +21,14 @@ export default function PhoneForm({ handleChange, loading, inputs }) {
 
       <label htmlFor="brand_id">
         Brand
-      <select required type="number" onChange={handleChange} name="brand_id" id="brand_id">
-          <option value="" disabled selected>Select your option</option>
-          <option value={1}>Saab</option>
-          <option value={1}>Mercedes</option>
-          <option value={1}>Audi</option>
+      <select required type="number" value={inputs.brand_id} onChange={handleChange} name="brand_id" id="brand_id">
+          <option value="" disabled >
+            Select your option
+            </option>
+          {brands.map(brand => (
+            <option key={brand.id} value={brand.id}>{brand.name}</option>
+          ))}
+
         </select>
 
       </label>
@@ -49,6 +54,16 @@ export default function PhoneForm({ handleChange, loading, inputs }) {
           onChange={handleChange}
         />
       </label>
+      <label htmlFor="imageURL">
+        OS
+      <textarea
+          id="imageURL"
+          name="imageURL"
+          placeholder="imageURL"
+          value={inputs.imageURL}
+          onChange={handleChange}
+        />
+      </label>
       <label htmlFor="storage">
         Storage
       <textarea
@@ -59,7 +74,6 @@ export default function PhoneForm({ handleChange, loading, inputs }) {
           onChange={handleChange}
         />
       </label>
-      <button type="submit">Submit</button>
     </fieldset>
   )
 }
