@@ -9,7 +9,7 @@ type Brand {
 
 type Mutation {
   addPhone(brand_id: Int!, dimensions: String, image: String, name: String!, os: String, storage: String): Phone!
-  deletePhone(id: String!): Phone
+  deletePhone(id: Int!): Phone
   updatePhone(brand_id: Int!, dimensions: String, id: Int!, image: String, name: String!, os: String, storage: String): Phone
 }
 
@@ -38,12 +38,6 @@ type PageInfo {
   startCursor: String
 }
 
-type Pagination {
-  endCursor: String
-  startCursor: String
-  totalCount: Int
-}
-
 type Phone {
   brand_id: Int
   dimensions: String
@@ -65,15 +59,15 @@ type PhoneEdge {
 
 type Query {
   getAllBrands: [Brand]!
-  getAllPhones(page: Int!, perPage: Int!): [Phone]!
   getBrandsPhones(brand_id: Int!): [Phone]
-  getPhone(id: String!): Phone
+  getPhone(id: Int!): Phone
   phoneConnection(
     """Returns the elements in the list that come after the specified cursor"""
     after: String
 
     """Returns the elements in the list that come before the specified cursor"""
     before: String
+    brand_id: Int
 
     """Returns the first n elements from the list."""
     first: Int
@@ -97,5 +91,5 @@ type QueryPhoneConnection_Connection {
   https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
   """
   pageInfo: PageInfo!
-  totalCount: Int
+  totalCount(brand_id: Int): Int
 }

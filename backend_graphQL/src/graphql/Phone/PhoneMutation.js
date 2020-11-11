@@ -65,7 +65,7 @@ const PhoneMutation = extendType({
     t.field('deletePhone', {
       type: 'Phone',
       args: {
-        id: stringArg({ required: true }),
+        id: intArg({ required: true }),
       },
       async resolve(_root, args, ctx) {
         const phone = await ctx.prisma.phone.delete({

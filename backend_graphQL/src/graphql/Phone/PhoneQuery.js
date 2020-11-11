@@ -7,74 +7,72 @@ const PhoneQuery = extendType({
 
     t.connectionField('phoneConnection', {
       type: "Phone",
+      args: {
+        page: intArg({ required: false }),
+        brand_id: intArg({ required: false }),
+      },
+      // yes , both are necessary
       additionalArgs: {
         page: intArg({ required: false }),
+        brand_id: intArg({ required: false }),
       },
       extendConnection(t) {
         t.int('totalCount', {
-          resolve: async (source, args, ctx) => await ctx.prisma.phone.count(),
-        })
+          args: {
+            brand_id: intArg({ required: false }),
+          },
+          resolve: async (source, args, ctx) => {
+            const filter = {}
+            if (args.brand_id) {
+              filter.where = {
+                brand_id: args.brand_id
+              }
+            }
 
+            return await ctx.prisma.phone.count(filter)
+          },
+        })
       },
-      // IF this method isnt added prisma yells ????
+      // IF this method isnt added prisma yells, doesnt do anything 
       async totalCount() { },
       async resolve(root, args, ctx) {
-        let phones
-        if (args.page && !args.after) {
-          phones = await ctx.prisma.phone.findMany({
-            orderBy: { name: 'desc' },
-            skip: args.page * args.first,
-            take: args.first,
-          })
-        } else {
-          phones = await ctx.prisma.phone.findMany({
-            orderBy: { name: 'asc' }
-          })
-
+        const skip = args.page - 1
+        const filter = {
+          orderBy: { name: 'asc' },
+          skip: skip * args.first,
+          take: args.first,
         }
+        if (args.brand_id) {
+          filter.where = {
+            brand_id: args.brand_id
+          }
+        }
+        // TODO pagination works, but isn't taking advantage of cursors.
+        const phones = await ctx.prisma.phone.findMany(filter)
         return connectionFromArray(phones, args)
       },
     })
-    t.field('getAllPhones', {
-      list: true,
-      pagination: true,
-      nullable: false,
+    t.list.field('getBrandsPhones', {
       type: 'Phone',
       args: {
-        page: intArg({ required: true }),
-        perPage: intArg({ required: true }),
+        brand_id: intArg({ required: true }),
       },
-      async resolve(_root, { page, perPage }, ctx) {
-        const count = await ctx.prisma.phone.count()
-        const phones = await ctx.prisma.phone.findMany({
-          orderBy: { name: 'desc' },
-          skip: page,
-          take: perPage,
-        })
-        return phones
+      async resolve(_root, args, ctx) {
+        const brandsPhones = await ctx.prisma.phone
+          .findMany({ where: { brand_id: args.brand_id } })
+        return brandsPhones
       },
     }),
-      t.list.field('getBrandsPhones', {
-        type: 'Phone',
-        args: {
-          brand_id: intArg({ required: true }),
-        },
-        async resolve(_root, args, ctx) {
-          const brandsPhones = await ctx.prisma.phone
-            .findMany({ where: { brand_id: args.brand_id } })
-          return brandsPhones
-        },
-      }),
       t.field('getPhone', {
         type: 'Phone',
         args: {
-          id: stringArg({ required: true }),
+          id: intArg({ required: true }),
         },
 
         async resolve(_root, args, ctx) {
           const result = await ctx.prisma.phone.findOne({
             where: {
-              id: Number(args.id),
+              id: args.id,
 
             },
           })
