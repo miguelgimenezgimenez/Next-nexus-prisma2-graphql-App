@@ -37,7 +37,7 @@ function UpdateItem({ query }) {
 
   const { data = {}, loading } = useQuery(GET_PHONE_QUERY, {
     variables: {
-      id,
+      id: parseInt(id),
     },
   });
 
@@ -47,7 +47,8 @@ function UpdateItem({ query }) {
     image: "",
     dimensions: "",
     os: "",
-    storage: ""
+    storage: "",
+    imageURL:""
   });
 
 
