@@ -7,25 +7,20 @@ import Pagination from '../Pagination';
 import { Center, List } from '../styles/common';
 import ListItem from '../ListItem';
 
-const ALL_PHONES_QUERY = gql`
-  query ALL_PHONES_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
-    getAllPhones(first: $first, skip: $skip, orderBy: "name ") {
-      id
-      name
-      brand_id
-      image      
-    }
-  }
-`;
 
 const PHONE_CONNECTION_QUERY = gql`
-  query PHONE_CONNECTION_QUERY( $first: Int = ${perPage}) {
-    phoneConnection(first: $first) {
+  query PHONE_CONNECTION_QUERY( 
+    $first: Int = ${perPage},
+    $after:String=${null}, 
+    $page:Int=1
+    $brand_id:Int)  
+     {
+    phoneConnection(first: $first,after:$after, page:$page, brand_id:$brand_id ) {
       pageInfo{
         startCursor
         endCursor
       }
-      totalCount
+      totalCount(brand_id:$brand_id)
       nodes{
         id
         name
@@ -36,31 +31,28 @@ const PHONE_CONNECTION_QUERY = gql`
   }
 `;
 
-function PhonesList({ page, count }) {
+function PhonesList({ page, brand_id }) {
   const { data, error, loading } = useQuery(PHONE_CONNECTION_QUERY, {
-    variables: { first: count, perPage }
+    variables: { first: perPage, page, brand_id }
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   if (!data) return <p>No items here!</p>;
 
+  const totalCount = data.phoneConnection?.totalCount
   return (
     <Center>
-      <Pagination page={page} pathname="phones" />
-
-
+      <Pagination page={page} pathname="phones" totalCount={totalCount} brand_id={brand_id} />
       <List>
         {data.phoneConnection.nodes.map(phone => (
-          <ListItem item={phone} key={phone.id} pathname="/phone" />
+          <ListItem item={phone} key={phone.id} pathname="/phone" id={phone.id} />
         ))}
       </List>
-        );
-
-      <Pagination page={page} pathname="phones" />
+      <Pagination page={page} pathname="phones" totalCount={totalCount} brand_id={brand_id} />
 
     </Center>
   );
 }
 
 export default PhonesList;
-export { ALL_PHONES_QUERY }
+export { PHONE_CONNECTION_QUERY }

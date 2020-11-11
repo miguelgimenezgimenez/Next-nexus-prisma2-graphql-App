@@ -55,7 +55,7 @@ function UpdateItem({ query }) {
     UPDATE_PHONE_MUTATION,
     {
       variables: {
-        id,
+        id: parseInt(id),
         ...inputs,
         brand_id: parseInt(inputs.brand_id)
       },

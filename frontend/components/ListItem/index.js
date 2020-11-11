@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Title } from '../styles/common';
 import ListItemStyles from './styles';
-import DeleteItem from '../DeleteItem/index';
+import DeleteItem from '../DeleteItem';
 
 export default function ListItem({ item, pathname }) {
 
@@ -35,7 +35,7 @@ export default function ListItem({ item, pathname }) {
         >
           <a>Edit</a>
         </Link>
-        <DeleteItem >Delete Phone</DeleteItem>
+        <DeleteItem id={item.id}>Delete Phone</DeleteItem>
       </div>
     </ListItemStyles>
   );

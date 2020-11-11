@@ -7,7 +7,7 @@ import PhoneDetailStyles from './styles';
 
 
 const GET_PHONE_QUERY = gql`
-  query GET_PHONE_QUERY($id: String!) {
+  query GET_PHONE_QUERY($id: Int!) {
     getPhone(id:$id) {
       id
       name

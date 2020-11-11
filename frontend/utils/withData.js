@@ -3,10 +3,12 @@ import { onError } from '@apollo/link-error';
 import { getDataFromTree } from '@apollo/react-ssr';
 import withApollo from 'next-with-apollo';
 import { endpoint } from '../config';
-import paginationField from './paginationField';
+
 import { createHttpLink } from "apollo-link-http";
 
-function createClient({ headers, initialState }) {
+
+function createClient({ initialState }) {
+
   return new ApolloClient({
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
@@ -25,15 +27,8 @@ function createClient({ headers, initialState }) {
       createHttpLink({ uri: endpoint })
 
     ]),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            allItems: paginationField(),
-          },
-        },
-      },
-    }).restore(initialState || {}),
+
+    cache: new InMemoryCache({}).restore(initialState || {}),
   });
 }
 

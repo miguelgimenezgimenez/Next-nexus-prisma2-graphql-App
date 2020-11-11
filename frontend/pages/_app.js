@@ -1,23 +1,23 @@
-import App from 'next/app';
+// import App from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
 import withData from '../utils/withData';
 
-// import { CartStateProvider } from '../components/LocalState';
+import { StateProvider } from '../LocalState';
 
 function MyApp({ Component, apollo, pageProps }) {
   return (
     <ApolloProvider client={apollo}>
-      {/* <CartStateProvider> */}
+      <StateProvider>
         <Page>
           <Component {...pageProps} />
         </Page>
-      {/* </CartStateProvider> */}
+      </StateProvider>
     </ApolloProvider>
   );
 }
 
-MyApp.getInitialProps = async function({ Component, ctx }) {
+MyApp.getInitialProps = async function ({ Component, ctx }) {
   let pageProps = {};
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);

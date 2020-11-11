@@ -19,8 +19,8 @@ export default function PhoneForm({ handleChange, loading, inputs }) {
 
       <label htmlFor="brand_id">
         Brand
-      <select type="number" onChange={handleChange} name="brand_id" id="brand_id">
-          <option value={1}>Volvo</option>
+      <select required type="number" onChange={handleChange} name="brand_id" id="brand_id">
+          <option value="" disabled selected>Select your option</option>
           <option value={1}>Saab</option>
           <option value={1}>Mercedes</option>
           <option value={1}>Audi</option>

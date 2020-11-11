@@ -4,7 +4,7 @@ function Phone({ query }) {
 
   return (
     <div>
-      <PhoneDetail id={query.id} />
+      <PhoneDetail id={parseInt(query.id)} />
     </div>
   );
 }
