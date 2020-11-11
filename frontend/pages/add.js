@@ -14,30 +14,35 @@ import PhoneForm from '../components/PhoneForm';
 const ADD_PHONE_MUTATION = gql`
   mutation ADD_PHONE_MUTATION(
     $name: String!
-    $brand_id: String!
+    $brand_id: Int!
     $image: String,
     $dimensions: String
     $os: String,
     $storage: String,
   ) {
     addPhone(
-      
         name:$name
         brand_id:$brand_id
         image:$image
         dimensions:$dimensions
         os:$os
         storage:$storage
-      
     ) {
-      id
-      name
-     
+      id     
     }
   }
 `;
 
-
+function update(cache, payload) {
+  cache.modify({
+    id: cache.identify(payload.data.createItem),
+    fields: {
+      allItems(items, { readField }) {
+        return [payload.data.createItem, ...items];
+      },
+    }
+  });
+}
 function AddPhone() {
   const { inputs, handleChange } = useForm({
     name: "",
@@ -47,9 +52,10 @@ function AddPhone() {
     os: "",
     storage: ""
   });
+
   const [addPhone, { loading, error }] = useMutation(ADD_PHONE_MUTATION, {
-    variables: inputs,
-    // update,a
+    variables: { ...inputs, brand_id: parseInt(inputs.brand_id) },
+    update,
     refetchQueries: [{ query: ALL_PHONES_QUERY }, { query: PAGINATION_QUERY }],
   });
 

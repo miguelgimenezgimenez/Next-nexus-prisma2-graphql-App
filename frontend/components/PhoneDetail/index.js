@@ -6,8 +6,6 @@ import Error from '../ErrorMessage';
 import PhoneDetailStyles from './styles';
 
 
-
-
 const GET_PHONE_QUERY = gql`
   query GET_PHONE_QUERY($id: String!) {
     getPhone(id:$id) {

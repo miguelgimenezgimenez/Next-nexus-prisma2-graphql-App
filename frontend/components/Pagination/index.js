@@ -4,34 +4,37 @@ import { useQuery } from '@apollo/client';
 
 import Head from 'next/head';
 import Link from 'next/link';
-import  PaginationStyles  from './styles';
+import PaginationStyles from './styles';
 import { perPage } from '../../config';
 import ErrorMessage from '../ErrorMessage';
 
-export const PAGINATION_QUERY = gql`
-  query PAGINATION_QUERY {
-    _allItemsMeta {
-      count
-    }
-  }
-`;
 
-function Pagination({ page }) {
-  const { error, loading, data } = useQuery(PAGINATION_QUERY);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <ErrorMessage error={error} />;
-  const { count } = data._allItemsMeta;
-  const pages = Math.ceil(count / perPage);
+// //TODO A proper dynamic pagination query should be created which depending on the input, gives number of total items
+// export const PAGINATION_QUERY = gql`
+//   query PAGINATION_QUERY {  
+//     phoneConnection(first:1) {
+//       totalCount
+//     }
+//   }
+// `;
+
+function Pagination({ page, pathname , totalCount}) {
+  // const { error, loading, data } = useQuery(PAGINATION_QUERY);
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <ErrorMessage error={error} />;
+  // const { totalCount } = data.phoneConnection;
+  const pages = Math.ceil(totalCount / perPage);
   return (
     <PaginationStyles data-testid="pagination">
       <Head>
         <title>
-          Sick Fits! — Page {page} of {pages}
+          Phones  Page {page} of {pages}
         </title>
       </Head>
       <Link
+
         href={{
-          pathname: 'items',
+          pathname: pathname,
           query: { page: page - 1 },
         }}
       >
@@ -45,10 +48,11 @@ function Pagination({ page }) {
           {pages}
         </span>
       </p>
-      <p>{count} Items Total</p>
+      <p>{totalCount} Items Total</p>
       <Link
+
         href={{
-          pathname: 'items',
+          pathname: pathname,
           query: { page: page + 1 },
         }}
       >

@@ -49,7 +49,7 @@ function UpdateItem({ query }) {
     os: "",
     storage: ""
   });
-  console.log(inputs)
+
 
   const [updatePhone, { loading: updating, error }] = useMutation(
     UPDATE_PHONE_MUTATION,

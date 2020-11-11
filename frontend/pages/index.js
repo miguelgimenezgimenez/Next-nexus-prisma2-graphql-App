@@ -1,10 +1,10 @@
 import PhonesList from '../components/PhonesList';
 
 function Home({ query }) {
-
+  const { page } = query
   return (
     <div>
-      <PhonesList/>
+      <PhonesList page={parseInt(page) || 1} />
     </div>
   );
 }

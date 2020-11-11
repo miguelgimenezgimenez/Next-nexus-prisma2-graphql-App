@@ -1,6 +1,6 @@
-// const Phone = require('./Phone')
 
 module.exports = { 
+  ...require('./Pagination'),
   ...require('./Phone'),
-  ...require('./Brand')
+  ...require('./Brand'),
 }
