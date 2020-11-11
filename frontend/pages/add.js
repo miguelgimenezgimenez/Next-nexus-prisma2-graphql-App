@@ -6,7 +6,7 @@ import Router from 'next/router';
 import useForm from '../utils/useForm';
 import { Form } from '../components/styles/common';
 import ErrorMessage from '../components/ErrorMessage';
-import { PHONE_CONNECTION_QUERY } from '../components/PhonesList';
+
 import PhoneForm from '../components/PhoneForm';
 
 
@@ -33,11 +33,12 @@ const ADD_PHONE_MUTATION = gql`
 `;
 
 function update(cache, payload) {
+  console.log(cache, payload)
   cache.modify({
-    id: cache.identify(payload.data.addPhone),
     fields: {
-      allItems(items) {
-        return [payload.data.addPhone, ...items];
+      phoneConnection({ nodes }) {
+
+        return [payload.data.addPhone, ...nodes];
       },
     }
   });
@@ -49,13 +50,13 @@ function AddPhone() {
     image: "",
     dimensions: "",
     os: "",
-    storage: ""
+    storage: "",
+    imageURL: ""
   });
 
   const [addPhone, { loading, error }] = useMutation(ADD_PHONE_MUTATION, {
     variables: { ...inputs, brand_id: parseInt(inputs.brand_id) },
     update,
-    // refetchQueries: [{ query: PHONE_CONNECTION_QUERY }]
   });
 
   return (
@@ -72,6 +73,8 @@ function AddPhone() {
     >
       <ErrorMessage error={error} />
       <PhoneForm handleChange={handleChange} loading={loading} inputs={inputs} ></PhoneForm>
+      <button type="submit">Submit</button>
+
     </Form>
   );
 }
