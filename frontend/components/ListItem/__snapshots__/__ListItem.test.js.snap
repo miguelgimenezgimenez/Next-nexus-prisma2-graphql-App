@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListItem/> renders and matches the snapshot 1`] = `
+<div>
+  <div
+    class="styles__ListItemStyles-yahwwc-0 iUlpUq"
+  >
+    <h3
+      class="common__Title-iur1qk-0 eiOXoq"
+    >
+      <a
+        href="/phone?id=2"
+      >
+        <img
+          alt="Acer Iconia Talk"
+          src="image.jpg"
+        />
+        Acer Iconia Talk
+      </a>
+    </h3>
+    <div
+      class="buttonList"
+    >
+      <a
+        href="/update?id=2"
+      >
+        Edit
+      </a>
+      <button
+        type="button"
+      >
+        Delete Phone
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -24,8 +24,6 @@ export default function ListItem({ item, pathname }) {
         </Link>
       </Title>
 
-      <p>{item.description}</p>
-
       <div className="buttonList">
         <Link
           href={{

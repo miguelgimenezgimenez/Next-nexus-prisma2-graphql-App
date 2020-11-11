@@ -1,11 +1,13 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        'testing-library/globals': true
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:testing-library/react"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -15,7 +17,8 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "testing-library"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
