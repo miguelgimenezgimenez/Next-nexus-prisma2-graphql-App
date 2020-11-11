@@ -1,4 +1,4 @@
-const { extendType, intArg, stringArg } = require('@nexus/schema')
+const { extendType, intArg } = require('@nexus/schema')
 const { connectionFromArray } = require('graphql-relay')
 
 const PhoneQuery = extendType({
