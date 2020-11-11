@@ -1,3 +1,5 @@
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import NProgress from 'nprogress';
 import Router from 'next/router';
@@ -16,25 +18,27 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
+const Header = () => {
+  return (
+    <StyledHeader>
+      <div className="bar">
+        <Logo>
+          <Link href="/">
+            <a>
+              <img src="./static/gs-logo.png" alt="" />
+            </a>
+          </Link>
+        </Logo>
 
-const Header = () => (
-  <StyledHeader>
-    <div className="bar">
-      <Logo>
-        <Link href="/">
-          <a>
-            <img src="./static/gs-logo.png" alt="" />
-          </a>
-        </Link>
-      </Logo>
-      <Nav />
-    </div>
-    <div className="sub-bar">
-      <Nav />
+      </div>
+      <div className="sub-bar">
+        <Nav  />
 
-    </div>
+      </div>
 
-  </StyledHeader>
-);
+    </StyledHeader>
+  )
+}
+
 
 export default Header;
