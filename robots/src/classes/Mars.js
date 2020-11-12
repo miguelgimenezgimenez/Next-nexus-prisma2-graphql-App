@@ -28,14 +28,8 @@ class Mars {
     return discoveredItem
   }
   markMapArea(position, value) {
-    return new Promise(resolve => {
-      this.map[position.x][position.y] = value
-      setTimeout(() => {
+    return Promise.resolve()
 
-        resolve()
-      }, 1000);
-
-    })
   }
 
 

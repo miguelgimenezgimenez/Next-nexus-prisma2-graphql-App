@@ -33,9 +33,7 @@ class Mission {
     let index = 0;
     while (index < this.missionArtifacts.length) {
       const artifact = this.missionArtifacts[index]
-      artifact.update(this.planet)
-      const missionResponse = await this.missionArtifacts[index].executeCommands(this.planet)
-      
+      const missionResponse = await artifact.executeCommands(this.planet)
       yield missionResponse
       index++
     }
@@ -45,6 +43,7 @@ class Mission {
     for await (const missionResponse of this.missionArtifactGenerator()) {
       console.log(this.planet);
     }
+    return Promise.resolve(this.missionArtifacts)
   }
 }
 

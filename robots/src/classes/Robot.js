@@ -85,7 +85,7 @@ class Robot {
     this.planetExplored.push(currentInfo)
     await planet.markMapArea(this.position, this.id)
     for await (const item of this.commandGenerator(planet)) {
-      console.log('next command', item)
+      console.log('next command')
     }
 
     return Promise.resolve()
