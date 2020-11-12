@@ -48,7 +48,7 @@ We need to run the commands in the following order:
 
 ``` make run_frontend ```.  :   This command will install the dependencies and run the frontend.
 
-Then we can go to `http://localhost:8888`.
+Then we can go to: http://localhost:8888
 
 ### Testing.
 
