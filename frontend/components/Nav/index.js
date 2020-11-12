@@ -4,13 +4,15 @@ import { useLocalState } from '../../LocalState';
 import NavStyles from './styles';
 
 function Nav() {
+
   const data = useLocalState()
 
   return (
-    <NavStyles data-testid="nav">
+    <NavStyles >
       {data.brands.map(brand => (
 
         <Link
+          data-testid="brand_nav"
           key={brand.id}
           href={{
             pathname: '/phones',

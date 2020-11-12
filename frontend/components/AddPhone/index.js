@@ -35,7 +35,6 @@ function AddPhone() {
 
   return (
     <Form
-      data-testid="form"
       onSubmit={async e => {
         e.preventDefault();
         const res = await addPhone();

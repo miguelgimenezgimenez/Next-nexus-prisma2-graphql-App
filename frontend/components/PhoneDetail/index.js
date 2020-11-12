@@ -17,7 +17,7 @@ function PhoneDetail({ id }) {
   if (!data.getPhone) return <p>No phone Found for {id}</p>;
   const phone = data.getPhone;
   return (
-    <PhoneDetailStyles data-testid="singleItem">
+    <PhoneDetailStyles >
       <Head>
         <title> GS - {phone.name}</title>
       </Head>
