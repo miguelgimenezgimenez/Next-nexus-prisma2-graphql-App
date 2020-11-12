@@ -1,6 +1,8 @@
-import { INITIAL_STATUS, MISSION_FAILED } from '../constants.js'
-import Mars from './Mars.js'
-import Robot from './Robot.js'
+const constants = require('../constants.js')
+const Mars = require('./Mars.js')
+const Robot = require('./Robot.js')
+
+const { INITIAL_STATUS, MISSION_FAILED } = constants
 
 const artifacts = { "Robot": Robot }
 const planets = { 'Mars': Mars }
@@ -22,7 +24,7 @@ class Mission {
     for (let index = 0; index < missionArtifactsInstructions.length; index += 2) {
       const [type, ...artifactInfo] = missionArtifactsInstructions[index].split(' ')
       const commands = missionArtifactsInstructions[index + 1]
-      if(!artifacts[type]) throw new TypeError("Wrong Artifact type specified, artifact name should be one of ['Robot',...]")
+      if (!artifacts[type]) throw new TypeError("Wrong Artifact type specified, artifact name should be one of ['Robot',...]")
       const artifact = artifacts[type].create(artifactInfo, commands, index)
       missionArtifacts.push(artifact)
     }
@@ -33,7 +35,7 @@ class Mission {
   async *missionArtifactGenerator() {
     let index = 0;
     while (index < this.missionArtifacts.length) {
-      const missionResponse =this.missionArtifacts[index].executeCommands(this.planet)
+      const missionResponse = this.missionArtifacts[index].executeCommands(this.planet)
       yield missionResponse
       index++
     }
@@ -46,4 +48,4 @@ class Mission {
   }
 }
 
-export default Mission
+module.exports = Mission

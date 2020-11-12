@@ -9,3 +9,5 @@ backend_test:
 	cd backend_graphQL && npm test
 frontend_test:
 	cd frontend && npm test
+robots_test:
+	cd robots && npm install && npm test

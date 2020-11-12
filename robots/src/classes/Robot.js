@@ -1,7 +1,7 @@
-import { DEAD, ALIVE, CARDINAL_DIRECTIONS, FORWARD, LEFT, RIGHT, LOST } from '../constants.js'
+const constants = require('../constants.js')
+const Vector = require('./Vector.js')
 
-import Vector from './Vector.js';
-
+const { DEAD, ALIVE, CARDINAL_DIRECTIONS, FORWARD, LEFT, RIGHT, LOST } = constants
 class Robot {
   constructor(id, position, orientation, commands) {
     this.id = id
@@ -92,4 +92,4 @@ class Robot {
 
 }
 
-export default Robot
+module.exports =  Robot

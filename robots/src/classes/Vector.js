@@ -14,4 +14,4 @@ class Vector {
     return new Vector(this.x + vector.x, this.y + vector.y)
   }
 }
-export default Vector
+module.exports=Vector

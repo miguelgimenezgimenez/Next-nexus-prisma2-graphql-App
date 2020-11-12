@@ -1,5 +1,5 @@
-import Mission from "../src/classes/Mission.js";
-import { ALIVE, LOST } from "../src/constants.js";
+const Mission = require("../src/classes/Mission.js")
+const { ALIVE, LOST } = require("../src/constants.js")
 
 const input_single = `
 Mars

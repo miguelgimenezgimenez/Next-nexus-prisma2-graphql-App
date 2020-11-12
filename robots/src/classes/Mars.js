@@ -1,4 +1,3 @@
-import { DEAD } from '../constants.js'
 class Mars {
   constructor(height, width, map) {
     this.height = height;
@@ -36,4 +35,4 @@ class Mars {
 
 }
 
-export default Mars
+module.exports = Mars
