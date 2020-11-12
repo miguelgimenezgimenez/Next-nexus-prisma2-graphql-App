@@ -39,14 +39,14 @@ describe('<ListItem/>', () => {
   });
 
   it('renders out the buttons properly', () => {
-    const { container } = render(
+    render(
       <MockedProvider>
         <ListItem item={phone} />
       </MockedProvider>
     );
 
     const edit = screen.getByText(/Edit/i);
-    expect(edit.href).toContain( `/update?id=${phone.id}`);
+    expect(edit.href).toContain(`/update?id=${phone.id}`);
 
     const deleteItem = screen.getByText(/delete/i);
     expect(deleteItem).toHaveProperty('type', 'button');
