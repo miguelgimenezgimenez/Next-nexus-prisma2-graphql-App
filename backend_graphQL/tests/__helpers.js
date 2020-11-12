@@ -51,19 +51,21 @@ function prismaTestContext() {
     async before() {
 
       schema = `test_${nanoid()}`
-   
+
       databaseUrl = `postgres://docker:docker@localhost:5432/testing?schema=${schema}`
       // Set the required environment variable to contain the connection string
       // to our database test schema
       process.env.DATABASE_URL = databaseUrl
-
+      execSync(`${prismaBinary} migrate up --create-db --experimental`, {
+        env: {
+          ...process.env,
+          DATABASE_URL: databaseUrl,
+        },
+      })
       const client = new Client({
         connectionString: databaseUrl,
       })
       await client.connect()
-
-
-      await client.query(`CREATE SCHEMA "${schema}"`)
 
       // TODO fix scripts to populate database for testing
       const creatBrandTableQuery = `      
