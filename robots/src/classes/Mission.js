@@ -22,6 +22,7 @@ class Mission {
     for (let index = 0; index < missionArtifactsInstructions.length; index += 2) {
       const [type, ...artifactInfo] = missionArtifactsInstructions[index].split(' ')
       const commands = missionArtifactsInstructions[index + 1]
+      if(!artifacts[type]) throw new TypeError("Wrong Artifact type specified, artifact name should be one of ['Robot',...]")
       const artifact = artifacts[type].create(artifactInfo, commands, index)
       missionArtifacts.push(artifact)
     }
@@ -32,8 +33,7 @@ class Mission {
   async *missionArtifactGenerator() {
     let index = 0;
     while (index < this.missionArtifacts.length) {
-      const artifact = this.missionArtifacts[index]
-      const missionResponse = await artifact.executeCommands(this.planet)
+      const missionResponse =this.missionArtifacts[index].executeCommands(this.planet)
       yield missionResponse
       index++
     }
@@ -41,7 +41,7 @@ class Mission {
 
   async start() {
     for await (const missionResponse of this.missionArtifactGenerator()) {
-      console.log(this.planet);
+      // console.log(this.planet);
     }
     return Promise.resolve(this.missionArtifacts)
   }
