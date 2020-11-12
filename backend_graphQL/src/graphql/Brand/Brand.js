@@ -1,4 +1,4 @@
-const { objectType, extendType, stringArg, intArg } = require('@nexus/schema')
+const { objectType, extendType } = require('@nexus/schema')
 
 const Brand = objectType({
   name: 'Brand',

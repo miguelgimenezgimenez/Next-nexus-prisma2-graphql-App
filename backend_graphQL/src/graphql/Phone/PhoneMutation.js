@@ -1,5 +1,7 @@
 const { extendType, stringArg, intArg } = require('@nexus/schema')
 
+const defaultImage = 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro--.jpg'
+
 const PhoneMutation = extendType({
   type: 'Mutation',
   definition(t) {
@@ -21,6 +23,7 @@ const PhoneMutation = extendType({
         const phone = await ctx.prisma.phone.create({
           data: {
             ...args,
+            image: defaultImage,
             Brand: {
               connect: {
                 id: brand_id
@@ -44,6 +47,7 @@ const PhoneMutation = extendType({
         },
         async resolve(_root, args, ctx) {
           const { brand_id, id } = args
+          // some people say it's not ok to use delete, but in this case i don't believe it's gonna hurt to use it ...
           delete args.brand_id
           delete args.id
           const phone = await ctx.prisma.phone.update({

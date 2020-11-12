@@ -1,5 +1,4 @@
 const { GraphQLServer } = require('graphql-yoga')
-const { nexusPrisma } = require('nexus-plugin-prisma')
 const { createContext } =require('./context')
 const { schema } = require('./schema')
 

@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ensures that a phone can be created: 
+     [
+       {
+        "brand_id": 1,
+        "dimensions": null,
+        "id": 1,
+        "image": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro--.jpg",
+        "link": null,
+        "name": "UpdatedName",
+        "os": null,
+        "storage": null
+      }
+    ]
+   1`] = `
+Array [
+  Object {
+    "brand_id": 1,
+    "dimensions": null,
+    "id": 1,
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro--.jpg",
+    "link": null,
+    "name": "UpdatedName",
+    "os": null,
+    "storage": null,
+  },
+]
+`;
+
+exports[`ensures that a phone can be created: 
+    Array [
+      Object {
+        "brand_id": 1,
+        "dimensions": null,
+        "id": 1,
+        "image": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro--.jpg",
+        "link": null,
+        "name": "UpdatedName",
+        "os": null,
+        "storage": null
+      }
+    ]
+   1`] = `
+Array [
+  Object {
+    "brand_id": 1,
+    "dimensions": null,
+    "id": 1,
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro--.jpg",
+    "link": null,
+    "name": "UpdatedName",
+    "os": null,
+    "storage": null,
+  },
+]
+`;
+
+exports[`ensures that a phone can be created: 
+    Object {
+      "addPhone": Object {
+        "id":1,
+        "name": "Nexus"
+      },
+    }
+   1`] = `
+Object {
+  "addPhone": Object {
+    "id": 1,
+    "name": "Nexus",
+  },
+}
+`;
+
+exports[`ensures that a phone can be created: 
+    Object {
+      "updatePhone": Object {
+        "id": 1,
+        "name": "UpdatedName"
+      }
+    }
+   1`] = `
+Object {
+  "updatePhone": Object {
+    "id": 1,
+    "name": "UpdatedName",
+  },
+}
+`;
