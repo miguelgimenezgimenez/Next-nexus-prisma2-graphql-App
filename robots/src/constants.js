@@ -8,7 +8,7 @@ export const CARDINAL_DIRECTIONS = {
 
 export const ALIVE = "Alive"
 export const LOST = "Lost"
-export const SCENT = "💀"
+export const DEAD = "💀"
 // export const CARDINAL_DIRECTIONS = ['N', 'S', 'E', 'W']
 export const RIGHT = 'R'
 export const FORWARD = 'F'

@@ -1,4 +1,4 @@
-import { SCENT, ALIVE, CARDINAL_DIRECTIONS, FORWARD, LEFT, RIGHT, LOST } from '../constants.js'
+import { DEAD, ALIVE, CARDINAL_DIRECTIONS, FORWARD, LEFT, RIGHT, LOST } from '../constants.js'
 
 import Vector from './Vector.js';
 
@@ -9,7 +9,7 @@ class Robot {
     this.orientation = orientation
     this.commands = commands
     this.status = ALIVE
-    this.surfaceExplored = []
+    this.planetExplored = []
   }
 
   static create(artifactInfo, commands) {
@@ -25,45 +25,42 @@ class Robot {
     return new Robot(id, position, orientationVector, commands)
   }
 
-  recognisePosition(position) {
 
-  }
 
-  explore(surface) {
+  async explore(planet) {
     const nextPos = this.position.moveForward(this.orientation)
-    const outOfBounds = nextPos.x > surface.width || nextPos.y > surface.height
-    let surfaceInfo = surface.getInfo(this.position)
-
-    if (surfaceInfo !== SCENT && outOfBounds) {
-      surface.scent(this.position)
+    const outOfBounds = nextPos.x > planet.width || nextPos.y > planet.height
+    const planetInfo = planet.getInfo(this.position)
+    if (planetInfo !== DEAD && outOfBounds) {
+      await planet.markMapArea(this.position, DEAD)
       this.status = LOST
-      return LOST
+      return Promise.resolve()
     }
-    if (surfaceInfo === SCENT && outOfBounds) {
-      return
+    if (planetInfo === DEAD && outOfBounds) {
+      return Promise.resolve()
     }
-    if (surfaceInfo === "X") {
-      this.surfaceExplored.push(surface.getInfo(nextPos))
-      surface.markMapArea(nextPos, this.id)
+    const nextplanetInfo = planet.getInfo(nextPos)
+    if (nextplanetInfo === "X") {
+      this.planetExplored.push(nextplanetInfo)
+      await planet.markMapArea(nextPos, this.id)
     }
     this.position = nextPos
-
+    return Promise.resolve()
   }
 
 
   sendMessage(msg) {
-    // TODO SEND RABBIT MQ MESSAGE
+    console.log('sendmessage', msg)
+    // return new Promise(res => res())
   }
-
-  executeCommands(surface) {
-    this.surfaceExplored.push(surface.getInfo(this.position))
-    surface.markMapArea(this.position, this.id)
-    for (let index = 0; index < this.commands.length; index++) {
+  async *commandGenerator(planet) {
+    let index = 0;
+    while (index < this.commands.length) {
       const command = this.commands[index];
       switch (command) {
         case FORWARD:
-          this.explore(surface)
-          break;
+          await this.explore(planet)
+          break
         case LEFT:
           this.orientation = this.orientation.turnLeft()
           break
@@ -76,7 +73,20 @@ class Robot {
       if (this.status === LOST) {
         return
       }
+      index++
+      yield
     }
+  }
+
+  async executeCommands(planet) {
+    const currentInfo = planet.getInfo(this.position)
+    this.planetExplored.push(currentInfo)
+    await planet.markMapArea(this.position, this.id)
+    for await (const item of this.commandGenerator(planet)) {
+      // console.log(planet)
+    }
+
+    return Promise.resolve()
   }
 
 
