@@ -1,23 +1,13 @@
 import { createContext, useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag'
+import { GET_BRANDS_QUERY } from '../graphql/queries'
 
 
 const LocalStateContext = createContext();
 const LocalStateProvider = LocalStateContext.Provider;
 
 
-const GET_BRANDS_QUERY = gql`
-  query GET_BRANDS_QUERY  {
-    getAllBrands {
-     name
-     id
-    }
-  }
-`;
-
-
-function StateProvider({ children }) {
+export function StateProvider({ children }) {
   const { data, error, loading } = useQuery(GET_BRANDS_QUERY);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -30,9 +20,8 @@ function StateProvider({ children }) {
   );
 }
 
-function useLocalState() {
+export function useLocalState() {
   const all = useContext(LocalStateContext);
   return all;
 }
 
-export { StateProvider, LocalStateContext, useLocalState };

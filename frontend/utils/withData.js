@@ -2,10 +2,9 @@ import { ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 import { onError } from '@apollo/link-error';
 import { getDataFromTree } from '@apollo/react-ssr';
 import withApollo from 'next-with-apollo';
-import { endpoint } from '../config';
-
 import { createHttpLink } from "apollo-link-http";
 
+const BACKEND_URL = process.env.BACKEND_URL
 
 function createClient({ initialState }) {
 
@@ -24,7 +23,7 @@ function createClient({ initialState }) {
           );
       }),
 
-      createHttpLink({ uri: endpoint })
+      createHttpLink({ uri: BACKEND_URL })
 
     ]),
 

@@ -1,39 +1,16 @@
 import React from 'react';
-import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client';
-import { perPage } from '../../config';
+
+import { PER_PAGE } from '../../constants';
 import Pagination from '../Pagination';
-
-import { Center, List } from '../styles/common';
+import { Center, List } from '../../styles/common';
 import ListItem from '../ListItem';
+import { PHONE_CONNECTION_QUERY } from '../../graphql/queries'
 
-
-const PHONE_CONNECTION_QUERY = gql`
-  query PHONE_CONNECTION_QUERY( 
-    $first: Int = ${perPage},
-    $after:String=${null}, 
-    $page:Int=1
-    $brand_id:Int)  
-     {
-    phoneConnection(first: $first,after:$after, page:$page, brand_id:$brand_id ) {
-      pageInfo{
-        startCursor
-        endCursor
-      }
-      totalCount(brand_id:$brand_id)
-      nodes{
-        id
-        name
-        brand_id
-        image      
-      }
-    }
-  }
-`;
 
 function PhonesList({ page, brand_id }) {
   const { data, error, loading } = useQuery(PHONE_CONNECTION_QUERY, {
-    variables: { first: perPage, page, brand_id }
+    variables: { first: PER_PAGE, page, brand_id }
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -54,5 +31,5 @@ function PhonesList({ page, brand_id }) {
   );
 }
 
-export default PhonesList;
-export { PHONE_CONNECTION_QUERY }
+export default PhonesList
+

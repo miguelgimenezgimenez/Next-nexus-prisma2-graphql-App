@@ -2,17 +2,17 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import PaginationStyles from './styles';
-import { perPage } from '../../config';
+import { PER_PAGE } from '../../constants';
 
 
 function Pagination({ page, pathname, totalCount, brand_id }) {
 
-  const pages = Math.ceil(totalCount / perPage);
+  const pages = Math.ceil(totalCount / PER_PAGE);
   return (
     <PaginationStyles data-testid="pagination">
       <Head>
         <title>
-          Phones  Page {page} of {pages}
+          Phones  Page {page}
         </title>
       </Head>
       <Link
@@ -37,7 +37,7 @@ function Pagination({ page, pathname, totalCount, brand_id }) {
 
         href={{
           pathname: pathname,
-          query: { page: page + 1 ,brand_id},
+          query: { page: page + 1, brand_id },
         }}
       >
         <a className="next" aria-disabled={page >= pages}>

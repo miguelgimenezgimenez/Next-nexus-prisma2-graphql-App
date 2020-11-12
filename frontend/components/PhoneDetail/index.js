@@ -1,24 +1,11 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import Head from 'next/head';
+
 import Error from '../ErrorMessage';
 import PhoneDetailStyles from './styles';
+import { GET_PHONE_QUERY } from '../../graphql/queries';
 
-
-const GET_PHONE_QUERY = gql`
-  query GET_PHONE_QUERY($id: Int!) {
-    getPhone(id:$id) {
-      id
-      name
-      brand_id
-      image
-      dimensions
-      os
-      storage          
-    }
-  }
-`;
 
 function PhoneDetail({ id }) {
   const { loading, error, data } = useQuery(GET_PHONE_QUERY, {
@@ -46,4 +33,4 @@ function PhoneDetail({ id }) {
 }
 
 export default PhoneDetail;
-export { GET_PHONE_QUERY };
+

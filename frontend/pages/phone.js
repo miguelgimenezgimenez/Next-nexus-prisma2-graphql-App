@@ -1,10 +1,11 @@
 import PhoneDetail from '../components/PhoneDetail';
 
 function Phone({ query }) {
+  const { id } = query
 
   return (
     <div>
-      <PhoneDetail id={parseInt(query.id)} />
+      <PhoneDetail id={parseInt(id)} />
     </div>
   );
 }

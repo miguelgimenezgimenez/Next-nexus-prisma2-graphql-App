@@ -2,19 +2,21 @@ import casual from 'casual';
 
 
 casual.seed(777);
-const mockBrand = () => ({
+const mockBrand = (overrides) => ({
   id: 1,
-  name: casual.name
+  name: casual.name,
+  ...overrides
+  
 });
 
 const mockPhone = overrides => ({
   "id": 2,
   "name": casual.name,
-  "image":"image.jpg",
+  "image":casual.name,
   "brand_id": 1,
-  "storage": "16GB/32GB storage, microSDXC",
-  "dimensions": "260g, 9.4mm thickness",
-  "os": "Android 6.0",
+  "storage": casual.text,
+  "dimensions": casual.catch_phrase,
+  "os": casual.company_name,
   ...overrides
 });
 

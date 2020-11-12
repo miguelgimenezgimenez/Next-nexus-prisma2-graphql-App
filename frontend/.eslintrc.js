@@ -2,7 +2,9 @@ module.exports = {
     "env": {
         "browser": true,
         "es2021": true,
-        'testing-library/globals': true
+        'jest/globals': true,
+        "node":true
+    
     },
     "extends": [
         "eslint:recommended",
@@ -18,7 +20,7 @@ module.exports = {
     },
     "plugins": [
         "react",
-        "testing-library"
+        "jest"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",

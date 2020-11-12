@@ -1,38 +1,8 @@
-import Router from 'next/router';
-import { useMutation, useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import UpdatePhone from '../components/UpdatePhone';
+import { useQuery } from '@apollo/client';
+import { GET_PHONE_QUERY } from '../graphql/queries'
 
-import { Form } from '../components/styles/common';
-import Error from '../components/ErrorMessage';
-import useForm from '../utils/useForm';
-import PhoneForm from '../components/PhoneForm';
-import { GET_PHONE_QUERY } from '../components/PhoneDetail'
-
-const UPDATE_PHONE_MUTATION = gql`
-  mutation UPDATE_PHONE_MUTATION(
-    $name: String!
-    $id: Int!
-    $brand_id: Int!
-    $image: String,
-    $dimensions: String
-    $os: String,
-    $storage: String,
-  ) {
-    updatePhone(
-      id:$id
-      name:$name
-      brand_id:$brand_id
-      image:$image
-      dimensions:$dimensions
-      os:$os
-      storage:$storage
-    ) {
-      id
-    }
-  }
-`;
-function UpdateItem({ query }) {
-
+function Update({ query }) {
   const { id } = query
 
   const { data = {}, loading } = useQuery(GET_PHONE_QUERY, {
@@ -41,51 +11,13 @@ function UpdateItem({ query }) {
     },
   });
 
-  const { inputs, handleChange } = useForm(data.getPhone || {
-    name: "",
-    brand_id: "",
-    image: "",
-    dimensions: "",
-    os: "",
-    storage: "",
-    imageURL:""
-  });
-
-
-  const [updatePhone, { loading: updating, error }] = useMutation(
-    UPDATE_PHONE_MUTATION,
-    {
-      variables: {
-        id: parseInt(id),
-        ...inputs,
-        brand_id: parseInt(inputs.brand_id)
-      },
-    }
-  );
-
   if (loading) return <p>Loading...</p>;
   if (!data || !data.getPhone) return <p>No Item Found for ID {id}</p>;
 
   return (
-    <Form
-      onSubmit={async e => {
-        e.preventDefault();
-        const res = await updatePhone();
-        console.log(res)
-        Router.push({
-          pathname: '/phone',
-          query: { id: res.data.updatePhone.id },
-        });
-      }}
-    >
-      <p>{data.getPhone.name}</p>
-      <Error error={error} />
-      <PhoneForm handleChange={handleChange} loading={updating} inputs={inputs} ></PhoneForm>
-
-    </Form>
+    <UpdatePhone id={parseInt(id)} phone={data.getPhone}></UpdatePhone>
   );
 }
 
+export default Update;
 
-export default UpdateItem;
-export { UPDATE_PHONE_MUTATION };

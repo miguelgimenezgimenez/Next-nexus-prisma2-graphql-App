@@ -54,16 +54,6 @@ export default function PhoneForm({ handleChange, loading, inputs }) {
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="imageURL">
-        OS
-      <textarea
-          id="imageURL"
-          name="imageURL"
-          placeholder="imageURL"
-          value={inputs.imageURL}
-          onChange={handleChange}
-        />
-      </label>
       <label htmlFor="storage">
         Storage
       <textarea

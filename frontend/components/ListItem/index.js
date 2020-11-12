@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Title } from '../styles/common';
+import { Title } from '../../styles/common';
 import ListItemStyles from './styles';
 import DeleteItem from '../DeleteItem';
 

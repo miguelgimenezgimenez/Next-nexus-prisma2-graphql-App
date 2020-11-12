@@ -6,16 +6,16 @@ exports[`<ListItem/> renders and matches the snapshot 1`] = `
     class="styles__ListItemStyles-yahwwc-0 iUlpUq"
   >
     <h3
-      class="common__Title-iur1qk-0 eiOXoq"
+      class="common__Title-qhs55p-0 euMuWN"
     >
       <a
         href="/phone?id=2"
       >
         <img
-          alt="Acer Iconia Talk"
-          src="image.jpg"
+          alt="Miss Coleman Berge"
+          src="Ms. Robin Luettgen"
         />
-        Acer Iconia Talk
+        Miss Coleman Berge
       </a>
     </h3>
     <div

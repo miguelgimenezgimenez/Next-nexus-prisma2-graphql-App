@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
-const { perPage } = require('../../config')
-import Pagination, { PAGINATION_QUERY } from './index';
+const { PER_PAGE } = require('../../constants')
+import Pagination from './index';
 
 describe('<Pagination/>', () => {
 
   it('renders pagination for 18 items', () => {
-    const { container, findByTestId, getByTestId, debug, query } = render(
+    const { container, getByTestId } = render(
       <Pagination page={1} totalCount={18} />
     );
 
@@ -14,7 +14,7 @@ describe('<Pagination/>', () => {
   });
 
   it('disables prev button on first page', () => {
-    const { getByText, findByTestId } = render(
+    const { getByText } = render(
       <Pagination page={1} totalCount={20} />
     );
     expect(getByText(/Prev/)).toHaveAttribute('aria-disabled', 'true');
@@ -22,15 +22,15 @@ describe('<Pagination/>', () => {
   });
 
   it('disables next button on last page', () => {
-    const { getByText, findByTestId } = render(
-      <Pagination page={5} totalCount={5 * perPage} />
+    const { getByText } = render(
+      <Pagination page={5} totalCount={5 * PER_PAGE} />
     );
     expect(getByText(/Prev/)).toHaveAttribute('aria-disabled', 'false');
     expect(getByText(/Next/)).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('enables all buttons on a middle page', () => {
-    const { getByText, findByTestId } = render(
+    const { getByText } = render(
       <Pagination page={3} totalCount={20} />
     );
     expect(getByText(/Prev/)).toHaveAttribute('aria-disabled', 'false');
