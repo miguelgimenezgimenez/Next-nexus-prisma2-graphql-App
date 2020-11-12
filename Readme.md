@@ -40,6 +40,8 @@ To run the app I have created a few scripts to make it easier for the reviewer t
 
 We need to run the commands in the following order:
 
+``` nvm use ```    :   To make sure the Node version is the correct one.
+
 ``` make build_backend ```  :   This command will build, and populate the database.
 
 ``` make run_backend ```    :   This command will run the server.
