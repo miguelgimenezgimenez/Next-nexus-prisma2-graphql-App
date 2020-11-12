@@ -1,5 +1,5 @@
 import Mission from "../src/classes/Mission.js";
-import { ALIVE } from "../src/constants.js";
+import { ALIVE, LOST } from "../src/constants.js";
 
 const input_single = `
 Mars
@@ -34,14 +34,25 @@ it('Ends in correct orientation', async () => {
   const missionRobots = await mission.start()
 
   expect(missionRobots[0].orientation.x).toBe(1)
-  expect(missionRobots[0].orientation.y).toBe(0)
+  expect(missionRobots[0].orientation.y).toBe(0) // East
 
   expect(missionRobots[1].orientation.x).toBe(0)
   expect(missionRobots[1].orientation.y).toBe(1)// North
 
   expect(missionRobots[2].orientation.x).toBe(0)
   expect(missionRobots[2].orientation.y).toBe(-1) //South
-  console.log(missionRobots)
+
+
+})
+it('ends in correct statu ', async () => {
+  const mission = Mission.create(input_single)
+  const missionRobots = await mission.start()
+
+  expect(missionRobots[0].status).toBe(ALIVE)
+
+  expect(missionRobots[1].status).toBe(LOST)// North
+
+  expect(missionRobots[2].status).toBe(ALIVE) //South
 
 
 })

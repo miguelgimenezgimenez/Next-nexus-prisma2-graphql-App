@@ -1,4 +1,4 @@
-import { SCENT } from '../constants.js'
+import { DEAD } from '../constants.js'
 class Mars {
   constructor(height, width, map) {
     this.height = height;
@@ -28,6 +28,7 @@ class Mars {
     return discoveredItem
   }
   markMapArea(position, value) {
+    this.map[position.x][position.y] = value
     return Promise.resolve()
 
   }

@@ -1,7 +1,7 @@
 class Vector {
   constructor(x, y) {
-    this.x = Number(x)
-    this.y = Number(y)
+    this.x = parseInt(x)
+    this.y = parseInt(y)
   }
   turnRight() {
     return new Vector(this.y, -this.x)

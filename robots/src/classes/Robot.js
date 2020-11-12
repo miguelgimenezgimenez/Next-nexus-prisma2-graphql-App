@@ -1,4 +1,4 @@
-import { SCENT, ALIVE, CARDINAL_DIRECTIONS, FORWARD, LEFT, RIGHT, LOST } from '../constants.js'
+import { DEAD, ALIVE, CARDINAL_DIRECTIONS, FORWARD, LEFT, RIGHT, LOST } from '../constants.js'
 
 import Vector from './Vector.js';
 
@@ -25,20 +25,18 @@ class Robot {
     return new Robot(id, position, orientationVector, commands)
   }
 
-  recognisePosition(position) {
 
-  }
 
   async explore(planet) {
     const nextPos = this.position.moveForward(this.orientation)
     const outOfBounds = nextPos.x > planet.width || nextPos.y > planet.height
     const planetInfo = planet.getInfo(this.position)
-    if (planetInfo !== SCENT && outOfBounds) {
-      await planet.markMapArea(this.position, SCENT)
+    if (planetInfo !== DEAD && outOfBounds) {
+      await planet.markMapArea(this.position, DEAD)
       this.status = LOST
       return Promise.resolve()
     }
-    if (planetInfo === SCENT && outOfBounds) {
+    if (planetInfo === DEAD && outOfBounds) {
       return Promise.resolve()
     }
     const nextplanetInfo = planet.getInfo(nextPos)
@@ -85,6 +83,7 @@ class Robot {
     this.planetExplored.push(currentInfo)
     await planet.markMapArea(this.position, this.id)
     for await (const item of this.commandGenerator(planet)) {
+      // console.log(planet)
     }
 
     return Promise.resolve()
