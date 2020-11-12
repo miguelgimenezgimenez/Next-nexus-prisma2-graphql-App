@@ -14,19 +14,19 @@ The technologies I had never used before are :
 make fewer errors with an open source ORM for PostgreSQL, MySQL and SQLite."
 https://www.prisma.io/
 
-#### NexusJS
+##### NexusJS
 "Declarative, Code-First GraphQL Schemas for JavaScript/TypeScript"
 
 https://nexusjs.org/
 
 
-#### ApolloGraphQL
+##### ApolloGraphQL
 "Apollo is the industry-standard GraphQL implementation, providing the data graph layer that connects modern apps to the cloud."
 
 https://www.apollographql.com/
 
 
-#### NextJS
+##### NextJS
  Next.js is a React framework for developing single page Server Side Rendered (SSR) Javascript applications.
  
 https://nextjs.org/
