@@ -12,16 +12,19 @@ https://www.prisma.io/
 
 #### NexusJS
 "Declarative, Code-First GraphQL Schemas for JavaScript/TypeScript"
+
 https://nexusjs.org/
 
 
 #### ApolloGraphQL
 "Apollo is the industry-standard GraphQL implementation, providing the data graph layer that connects modern apps to the cloud."
+
 https://www.apollographql.com/
 
 
 #### NextJS
  Next.js is a React framework for developing single page Server Side Rendered (SSR) Javascript applications.
+ 
 https://nextjs.org/
 
 The React file strutcure I have used is the following, (I hadn't used React since before the hooks) So again , folder structure, component reusability and best practices haven't been applied thoroughly
