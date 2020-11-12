@@ -41,7 +41,6 @@ class Mission {
 
   async start() {
     for await (const missionResponse of this.missionArtifactGenerator()) {
-      // console.log(this.planet);
     }
     return Promise.resolve(this.missionArtifacts)
   }
