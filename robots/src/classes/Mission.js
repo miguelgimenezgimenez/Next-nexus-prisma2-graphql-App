@@ -42,8 +42,8 @@ class Mission {
   }
 
   async start() {
-    for await (const missionResponse of this.missionArtifactGenerator()) {
-    }
+    // Here I am pausimg the function for every robot, this loop won't continue until the current robot executes all the commands.
+    for await (const missionResponse of this.missionArtifactGenerator()) {}
     return Promise.resolve(this.missionArtifacts)
   }
 }

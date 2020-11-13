@@ -28,8 +28,6 @@ class Mars {
   }
   markMapArea(position, value) {
     this.map[position.x][position.y] = value
-    return Promise.resolve()
-
   }
 
 

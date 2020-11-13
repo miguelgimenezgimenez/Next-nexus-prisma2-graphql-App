@@ -17,7 +17,7 @@ it('Robots ends in correct position', async () => {
 
   const mission = Mission.create(input_single)
   const missionRobots = await mission.start()
-  console.log(missionRobots)
+
   expect(missionRobots[0].position.x).toBe(1)
   expect(missionRobots[0].position.y).toBe(1)
 

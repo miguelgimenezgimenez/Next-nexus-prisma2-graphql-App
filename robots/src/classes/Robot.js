@@ -32,8 +32,9 @@ class Robot {
     const outOfBounds = nextPos.x > planet.width || nextPos.y > planet.height
     const planetInfo = planet.getInfo(this.position)
     if (planetInfo !== DEAD && outOfBounds) {
-      await planet.markMapArea(this.position, DEAD)
+      planet.markMapArea(this.position, DEAD)
       this.status = LOST
+      await this.sendMessage()
       return Promise.resolve()
     }
     if (planetInfo === DEAD && outOfBounds) {
@@ -42,7 +43,8 @@ class Robot {
     const nextplanetInfo = planet.getInfo(nextPos)
     if (nextplanetInfo === "X") {
       this.planetExplored.push(nextplanetInfo)
-      await planet.markMapArea(nextPos, this.id)
+      planet.markMapArea(nextPos, this.id)
+      await this.sendMessage()
     }
     this.position = nextPos
     return Promise.resolve()
@@ -50,8 +52,10 @@ class Robot {
 
 
   sendMessage(msg) {
-    console.log('sendmessage', msg)
-    // return new Promise(res => res())
+    //  Here I was supposed to send a RabbitMQ message to the backend, which would have a subscription with the frontend and would update a hypothetic map every time the robot moves.
+
+    return Promise.resolve()
+
   }
   async *commandGenerator(planet) {
     let index = 0;
@@ -81,15 +85,14 @@ class Robot {
   async executeCommands(planet) {
     const currentInfo = planet.getInfo(this.position)
     this.planetExplored.push(currentInfo)
-    await planet.markMapArea(this.position, this.id)
-    for await (const item of this.commandGenerator(planet)) {
-      // console.log(planet)
-    }
-
+    planet.markMapArea(this.position, this.id)
+    // I am iteration over a generator so I need the for await of loop, ( wanted to see how this works) But don't need the output of the generator.
+    // This loop will wait for every command to finish to loop to the next item, the reason for this is because the message sending would have been asynchronous and I wanted to delay the execution of the command to make the robot move slowly in the map.
+    for await (const item of this.commandGenerator(planet)) { }
     return Promise.resolve()
   }
 
 
 }
 
-module.exports =  Robot
+module.exports = Robot
