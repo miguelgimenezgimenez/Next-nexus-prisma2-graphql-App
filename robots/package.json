@@ -1,25 +1,24 @@
 {
-  "name": "robots",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --watch"
-  },
-  "type": "module",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/node": "^7.12.6",
-    "@babel/preset-env": "^7.12.1",
-    "babel-jest": "^26.6.3",
-    "eslint": "^7.12.1",
-    "jest": "^26.6.3"
-  },
-  "dependencies": {
-    "amqplib": "^0.6.0",
-    "bluebird": "^3.7.2"
-  }
+    "name": "robots",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --watch"
+    },
+    "type": "module",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@babel/node": "^7.12.6",
+        "@babel/preset-env": "^7.12.1",
+        "babel-jest": "^26.6.3",
+        "eslint": "^7.12.1",
+        "jest": "^26.6.3"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
 }
