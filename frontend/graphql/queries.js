@@ -8,7 +8,7 @@ query GET_BRANDS_QUERY  {
    id
   }
 }
-`;
+`
 
 export const PHONE_CONNECTION_QUERY = gql`
   query PHONE_CONNECTION_QUERY( 
@@ -31,7 +31,7 @@ export const PHONE_CONNECTION_QUERY = gql`
       }
     }
   }
-`;
+`
 
 
 export const GET_PHONE_QUERY = gql`
@@ -46,4 +46,4 @@ export const GET_PHONE_QUERY = gql`
       storage          
     }
   }
-`;
+`

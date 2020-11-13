@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Logo = styled.div`
   margin-left: 2rem;
@@ -15,7 +15,7 @@ export const Logo = styled.div`
     margin: 0;
     text-align: center;
   }
-`;
+`
 export const StyledHeader = styled.header`
   .bar {
     background-color:white;
@@ -53,4 +53,4 @@ export const StyledHeader = styled.header`
 
 }
   }
-`;
+`

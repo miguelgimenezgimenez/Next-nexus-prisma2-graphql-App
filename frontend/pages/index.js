@@ -1,4 +1,4 @@
-import PhonesList from '../components/PhonesList';
+import PhonesList from '../components/PhonesList'
 
 function Home({ query }) {
   const { page, brand_id } = query
@@ -6,8 +6,8 @@ function Home({ query }) {
     <div>
       <PhonesList page={parseInt(page) || 1} brand_id={parseInt(brand_id)} />
     </div>
-  );
+  )
 }
 
 
-export default Home;
+export default Home

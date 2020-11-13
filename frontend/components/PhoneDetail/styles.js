@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const PhoneDetailStyles = styled.div`
   max-width: 1200px;
@@ -18,6 +18,6 @@ const PhoneDetailStyles = styled.div`
     margin: 3rem;
     font-size: 2rem;
   }
-`;
+`
 
 export default PhoneDetailStyles

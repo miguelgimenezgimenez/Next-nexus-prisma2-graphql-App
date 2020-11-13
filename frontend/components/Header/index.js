@@ -1,21 +1,21 @@
 
-import Link from 'next/link';
-import NProgress from 'nprogress';
-import Router from 'next/router';
-import Nav from '../Nav';
-import { Logo, StyledHeader } from './styles';
+import Link from 'next/link'
+import NProgress from 'nprogress'
+import Router from 'next/router'
+import Nav from '../Nav'
+import { Logo, StyledHeader } from './styles'
 
 
 Router.onRouteChangeStart = () => {
-  NProgress.start();
-};
+  NProgress.start()
+}
 Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
+  NProgress.done()
+}
 
 Router.onRouteChangeError = () => {
-  NProgress.done();
-};
+  NProgress.done()
+}
 
 const Header = () => {
   return (
@@ -44,4 +44,4 @@ const Header = () => {
 }
 
 
-export default Header;
+export default Header

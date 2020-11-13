@@ -1,14 +1,14 @@
-import React from 'react';
-import Link from 'next/link';
-import { Title } from '../../styles/common';
-import ListItemStyles from './styles';
-import DeleteItem from '../DeleteItem';
+import React from 'react'
+import Link from 'next/link'
+
+import { Title } from '../../styles/common'
+import ListItemStyles from './styles'
+import DeleteItem from '../DeleteItem'
 
 export default function ListItem({ item, pathname }) {
 
   return (
     <ListItemStyles>
-
       <Title>
         <Link
           href={{
@@ -36,5 +36,5 @@ export default function ListItem({ item, pathname }) {
         <DeleteItem id={item.id}>Delete Phone</DeleteItem>
       </div>
     </ListItemStyles>
-  );
+  )
 }

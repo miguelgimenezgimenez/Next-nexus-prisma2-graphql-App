@@ -1,13 +1,13 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import PaginationStyles from './styles';
-import { PER_PAGE } from '../../constants';
+import React from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
+import PaginationStyles from './styles'
+import { PER_PAGE } from '../../constants'
 
 
 function Pagination({ page, pathname, totalCount, brand_id }) {
 
-  const pages = Math.ceil(totalCount / PER_PAGE);
+  const pages = Math.ceil(totalCount / PER_PAGE)
   return (
     <PaginationStyles data-testid="pagination">
       <Head>
@@ -16,7 +16,6 @@ function Pagination({ page, pathname, totalCount, brand_id }) {
         </title>
       </Head>
       <Link
-
         href={{
           pathname: pathname,
           query: { page: page - 1, brand_id },
@@ -45,8 +44,8 @@ function Pagination({ page, pathname, totalCount, brand_id }) {
         </a>
       </Link>
     </PaginationStyles>
-  );
+  )
 }
 
-export default Pagination;
+export default Pagination
 

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { useLocalState } from '../../LocalState';
+import Link from 'next/link'
+import { useLocalState } from '../../LocalState'
 
-import NavStyles from './styles';
+import NavStyles from './styles'
 
 function Nav() {
 
@@ -10,7 +10,6 @@ function Nav() {
   return (
     <NavStyles >
       {data.brands.map(brand => (
-
         <Link
           data-testid="brand_nav"
           key={brand.id}
@@ -22,9 +21,8 @@ function Nav() {
           <a>{brand.name}</a>
         </Link>
       ))}
-
     </NavStyles>
-  );
+  )
 }
 
-export default Nav;
+export default Nav

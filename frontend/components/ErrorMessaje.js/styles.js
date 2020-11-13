@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const ErrorStyles = styled.div`
 padding: 2rem;
@@ -13,5 +13,5 @@ p {
 strong {
   margin-right: 1rem;
 }
-`;
+`
 export default ErrorStyles

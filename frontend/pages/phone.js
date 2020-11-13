@@ -1,4 +1,4 @@
-import PhoneDetail from '../components/PhoneDetail';
+import PhoneDetail from '../components/PhoneDetail'
 
 function Phone({ query }) {
   const { id } = query
@@ -7,8 +7,8 @@ function Phone({ query }) {
     <div>
       <PhoneDetail id={parseInt(id)} />
     </div>
-  );
+  )
 }
 
 
-export default Phone;
+export default Phone

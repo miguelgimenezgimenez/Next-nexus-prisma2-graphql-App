@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const ListItemStyles = styled.div`
   background: white;
@@ -35,6 +35,6 @@ const ListItemStyles = styled.div`
       padding: 1rem;
     }
   }
-`;
+`
 
-export default ListItemStyles;
+export default ListItemStyles

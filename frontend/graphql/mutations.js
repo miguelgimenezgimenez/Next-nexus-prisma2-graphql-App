@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 export const UPDATE_PHONE_MUTATION = gql`
 mutation UPDATE_PHONE_MUTATION(
@@ -22,7 +22,7 @@ mutation UPDATE_PHONE_MUTATION(
     id
   }
 }
-`;
+`
 
 
 export const ADD_PHONE_MUTATION = gql`
@@ -45,4 +45,13 @@ export const ADD_PHONE_MUTATION = gql`
       id 
     }
   }
-`;
+`
+
+
+export const DELETE_PHONE_MUTATION = gql`
+  mutation DELETE_PHONE_MUTATION($id: Int!) {
+    deletePhone(id: $id) {
+      id
+    }
+  }
+`

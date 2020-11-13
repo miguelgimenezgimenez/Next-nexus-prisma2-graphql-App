@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const PaginationStyles = styled.div`
 text-align: center;
@@ -22,5 +22,5 @@ a[aria-disabled='true'] {
   color: grey;
   pointer-events: none;
 }
-`;
-export default PaginationStyles;
+`
+export default PaginationStyles

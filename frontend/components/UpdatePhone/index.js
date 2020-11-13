@@ -1,11 +1,11 @@
-import Router from 'next/router';
-import { useMutation, useQuery } from '@apollo/client';
+import Router from 'next/router'
+import { useMutation } from '@apollo/client'
 
 
-import { Form } from '../../styles/common';
-import Error from '../ErrorMessage';
-import useForm from '../../utils/useForm';
-import PhoneForm from '../PhoneForm';
+import { Form } from '../../styles/common'
+import Error from '../ErrorMessage'
+import useForm from '../../utils/useForm'
+import PhoneForm from '../PhoneForm'
 import { GET_PHONE_QUERY } from '../../graphql/queries'
 import { UPDATE_PHONE_MUTATION } from '../../graphql/mutations'
 
@@ -17,13 +17,13 @@ function UpdatePhone({ phone }) {
   const { id } = phone
 
   const { inputs, handleChange } = useForm(phone || {
-    name: "",
-    brand_id: "",
-    dimensions: "",
-    os: "",
-    storage: "",
-    imageURL: ""
-  });
+    name: '',
+    brand_id: '',
+    dimensions: '',
+    os: '',
+    storage: '',
+    imageURL: ''
+  })
 
 
   const [updatePhone, { loading, error }] = useMutation(
@@ -37,21 +37,21 @@ function UpdatePhone({ phone }) {
       // haven't found the best way to update the cache when updating
       refetchQueries: [{ query: GET_PHONE_QUERY, variables: { id } }]
     }
-  );
+  )
 
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>
 
 
   return (
     <Form
       onSubmit={async e => {
-        e.preventDefault();
-        const res = await updatePhone();
+        e.preventDefault()
+        const res = await updatePhone()
         Router.push({
           pathname: '/phone',
           query: { id: res.data.updatePhone.id },
-        });
+        })
       }}
     >
       <p>{phone.name}</p>
@@ -60,9 +60,9 @@ function UpdatePhone({ phone }) {
       <button type="submit">Submit</button>
 
     </Form>
-  );
+  )
 }
 
 
-export default UpdatePhone;
+export default UpdatePhone
 
