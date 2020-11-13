@@ -1,6 +1,6 @@
 const { createTestContext } = require('../../../tests/__helpers')
 const ctx = createTestContext()
-it('ensures that a phone can be created', async () => {
+it('ensures that a phone can be created and updated', async () => {
   // Create a new draft
   const draftResult = await ctx.client.request(`
     mutation {
@@ -10,7 +10,7 @@ it('ensures that a phone can be created', async () => {
       }
     }
   `)
-  // console.log(draftResult)
+
 
   expect(draftResult).toMatchSnapshot(`
     Object {
@@ -31,7 +31,7 @@ it('ensures that a phone can be created', async () => {
   `,
     { id: draftResult.addPhone.id, brand_id: 1, name: 'UpdatedName' },
   )
-  // Snapshot the published draft and expect `published` to be true
+
   expect(publishResult).toMatchSnapshot(`
     Object {
       "updatePhone": Object {
