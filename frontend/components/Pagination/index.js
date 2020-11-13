@@ -6,6 +6,10 @@ import { PER_PAGE } from '../../constants'
 
 
 function Pagination({ page, pathname, totalCount, brand_id }) {
+  const queryParams = {}
+  if (brand_id) {
+    queryParams.brand_id = brand_id
+  }
 
   const pages = Math.ceil(totalCount / PER_PAGE)
   return (
@@ -18,7 +22,7 @@ function Pagination({ page, pathname, totalCount, brand_id }) {
       <Link
         href={{
           pathname: pathname,
-          query: { page: page - 1, brand_id },
+          query: { page: page - 1, ...queryParams },
         }}
       >
         <a className="prev" aria-disabled={page <= 1}>
@@ -36,7 +40,7 @@ function Pagination({ page, pathname, totalCount, brand_id }) {
 
         href={{
           pathname: pathname,
-          query: { page: page + 1, brand_id },
+          query: { page: page + 1, ...queryParams },
         }}
       >
         <a className="next" aria-disabled={page >= pages}>
