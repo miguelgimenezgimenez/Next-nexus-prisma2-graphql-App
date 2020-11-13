@@ -5,7 +5,7 @@ To this assessment I wanted to try out some new technologies I hadn't used befor
 I haven't created a production environment, or deployed the app (didn't have enough time), but have some experience doing so, and could do it if necessary.
 To populate the database I have scraped www.gsmarena.com.
 
-I have also done the robots project very fast, I wanted to send RabbitMQ messages that's why I made it asynchronous, but didn't have time to add RabbitMQ, it's quite messy. The idea was to create a rabbit worker that sends a message to the backend every time the Robot moves, and to add subscriptions with GraphQL to see how the robot is moving in the frontend. The code quality has a lot of room for improvement, since one method has side effects, and initally I wanted to create an inmmutable behaviour but that would have taken more time.
+I have also done the robots project very fast, I wanted to send RabbitMQ messages that's why I made it asynchronous, but didn't have time to add RabbitMQ. The idea was to create a rabbit worker that sends a message to the backend every time the Robot moves, and to add subscriptions with GraphQL to see how the robot is moving in the frontend. The code quality has a lot of room for improvement, since one method has side effects, and initally I wanted to create an inmmutable behaviour but that would have taken more time.
 
 The technologies I had never used before are :
 
@@ -36,7 +36,7 @@ The React file strutcure I have used is the following, (I hadn't used React sinc
 https://react-file-structure.surge.sh/
 
 
-### Description
+### Running the app
 
 **Docker necessary!**
 
