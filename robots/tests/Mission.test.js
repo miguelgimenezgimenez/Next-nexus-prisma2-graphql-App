@@ -50,9 +50,9 @@ it('Robots end in correct status ', async () => {
 
   expect(missionRobots[0].status).toBe(ALIVE)
 
-  expect(missionRobots[1].status).toBe(LOST)// North
+  expect(missionRobots[1].status).toBe(LOST)
 
-  expect(missionRobots[2].status).toBe(ALIVE) //South
+  expect(missionRobots[2].status).toBe(ALIVE)
 
 
 })
