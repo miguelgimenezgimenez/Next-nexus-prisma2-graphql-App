@@ -13,6 +13,7 @@ The technologies I had never used before are :
 ##### Prisma2 
 "Prisma helps app developers build faster and
 make fewer errors with an open source ORM for PostgreSQL, MySQL and SQLite."
+
 https://www.prisma.io/
 
 ##### NexusJS
