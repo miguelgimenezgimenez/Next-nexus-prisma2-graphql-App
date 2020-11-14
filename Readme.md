@@ -1,6 +1,6 @@
 ## Important Note
 
-To this assessment I wanted to try out some new technologies I hadn't used before, so I probably am not following best practices and folder structure might not be optimal, please bear in mind that I have done this project in less than 6 days. 
+To this assessment I wanted to try out some new technologies I hadn't used before, so I probably am not following best practices and folder structure might not be optimal, also I haven't had time to implement defensive programming thoroughly, please bear in mind that I have done this project in less than 6 days. 
 
 I haven't created a production environment, or deployed the app (didn't have enough time), but have some experience doing so, and could do it if necessary.
 I have also added the necessary .env files for the reviewer to run the project, but I am aware I should gitignore this files.
