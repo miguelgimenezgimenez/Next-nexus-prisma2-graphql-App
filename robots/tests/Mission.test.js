@@ -29,7 +29,7 @@ it('Robots ends in correct position', async () => {
 
 })
 
-it('Ends in correct orientation', async () => {
+it('Robots end in correct orientation', async () => {
   const mission = Mission.create(input_single)
   const missionRobots = await mission.start()
 
@@ -44,7 +44,7 @@ it('Ends in correct orientation', async () => {
 
 
 })
-it('ends in correct statu ', async () => {
+it('Robots end in correct status ', async () => {
   const mission = Mission.create(input_single)
   const missionRobots = await mission.start()
 
