@@ -13,7 +13,6 @@ import { UPDATE_PHONE_MUTATION } from '../../graphql/mutations'
 
 
 function UpdatePhone({ phone }) {
-  // because apollo queries initially give us undefined (during loading state) and we can't early return from a component with hooks underneath, we use an effect to "watch" the initial state. When it finally does come in, we update it
   const { id } = phone
 
   const { inputs, handleChange } = useForm(phone || {

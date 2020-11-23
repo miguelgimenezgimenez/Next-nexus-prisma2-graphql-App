@@ -56,13 +56,20 @@
             ".*": "babel-jest",
             "^.+\\.js?$": "babel-jest"
         },
-        "setupFilesAfterEnv": [ "<rootDir>/jest.setup.js" ],
-        "testPathIgnorePatterns": [ "<rootDir>/.next/", "<rootDir>/node_modules/" ]
+        "setupFilesAfterEnv": [
+            "<rootDir>/jest.setup.js"
+        ],
+        "testPathIgnorePatterns": [
+            "<rootDir>/.next/",
+            "<rootDir>/node_modules/"
+        ]
     },
     "babel": {
         "env": {
             "development": {
-                "presets": [ "next/babel" ],
+                "presets": [
+                    "next/babel"
+                ],
                 "plugins": [
                     [
                         "styled-components",
@@ -74,7 +81,9 @@
                 ]
             },
             "production": {
-                "presets": [ "next/babel" ],
+                "presets": [
+                    "next/babel"
+                ],
                 "plugins": [
                     [
                         "styled-components",
