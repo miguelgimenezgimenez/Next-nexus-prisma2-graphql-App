@@ -29,7 +29,7 @@ class Robot {
 
   async explore(planet) {
     const nextPos = this.position.moveForward(this.orientation)
-    const outOfBounds = nextPos.x > planet.width || nextPos.y > planet.height
+    const outOfBounds = nextPos.x > planet.width || nextPos.y > planet.height || nextPos.y < 0 || nextPos.x < 0 
     const planetInfo = planet.getInfo(this.position)
     if (planetInfo !== DEAD && outOfBounds) {
       planet.markMapArea(this.position, DEAD)
